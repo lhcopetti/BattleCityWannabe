@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "InputListener.h"
+#include "GameObjects\Missile.h"
 
 class World;
 
@@ -13,11 +14,11 @@ namespace GameObjects
 	class Tank : public GameObjects::GameObject, public InputListener
 	{
 
-		enum Direction { LEFT, RIGHT, UP, DOWN };
-
 	private:
 		Direction cDirection;
 		String cDirectionSprite[3];
+
+		Missile *missile;
 
 		std::vector<String> getSpriteDirection() const;
 
@@ -25,6 +26,7 @@ namespace GameObjects
 
 		Tank(int x, int y);
 
+		void update();
 		void Tank::paint(World* matrix) const;
 
 		void Tank::keyPressed(int ch);

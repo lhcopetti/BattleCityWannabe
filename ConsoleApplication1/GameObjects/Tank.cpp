@@ -113,3 +113,8 @@ std::vector<String> Tank::getSpriteDirection() const
 
 	//return vec;
 }
+
+void Tank::update()
+{
+
+}

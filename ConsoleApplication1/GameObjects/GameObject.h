@@ -3,6 +3,8 @@
 #include <vector>
 #include "BattleCityClone.h"
 
+enum Direction { LEFT, RIGHT, UP, DOWN };
+
 class World;
 
 namespace GameObjects
@@ -29,6 +31,8 @@ namespace GameObjects
 		virtual void onMoveUp() = 0;
 		virtual void onMoveLeft() = 0;
 		virtual void onMoveRight() = 0;
+
+		virtual void update() = 0;
 
 		virtual void paint(World* context) const = 0;
 	};

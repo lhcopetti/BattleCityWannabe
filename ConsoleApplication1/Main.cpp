@@ -7,8 +7,8 @@
 
 #include "BattleCityClone.h"
 #include "Console\Console.h"
-#include "GameObject.h"
-#include "Tank.h"
+#include "GameObjects\GameObject.h"
+#include "GameObjects\Tank.h"
 #include "Commands\UnitCommand.h"
 #include "Tiles\TileMap.h"
 

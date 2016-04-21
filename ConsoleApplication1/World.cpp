@@ -28,7 +28,7 @@ int World::getWidth() const
 	return _tileMap->width() * TILE_WIDTH;
 }
 
-void World::addGameObject(Game::GameObject* go)
+void World::addGameObject(GameObjects::GameObject* go)
 {
 	objects.push_back(go);
 }
@@ -57,7 +57,7 @@ void World::paint()
 		}
 	}
 
-	for each (Game::GameObject* gO in objects)
+	for each (GameObjects::GameObject* gO in objects)
 	{
 		gO->paint(this);
 	}

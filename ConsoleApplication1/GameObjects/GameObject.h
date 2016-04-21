@@ -5,7 +5,7 @@
 
 class World;
 
-namespace Game
+namespace GameObjects
 {
 
 	class GameObject

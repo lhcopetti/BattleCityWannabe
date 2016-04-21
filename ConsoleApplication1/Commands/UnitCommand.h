@@ -1,8 +1,10 @@
 #pragma once
 
-#include "../GameObject.h"
-#include "../Tank.h"
-#include "../World.h"
+#include "GameObjects\GameObject.h"
+#include "GameObjects\Tank.h"
+#include "World.h"
+
+using namespace GameObjects;
 
 namespace UnitCommand
 {

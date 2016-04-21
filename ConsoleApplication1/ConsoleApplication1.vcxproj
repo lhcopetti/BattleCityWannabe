@@ -88,6 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,8 +145,8 @@
   <ItemGroup>
     <ClCompile Include="GameObjects\Missile.cpp" />
     <ClCompile Include="Tiles\BrickTile.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Tank.cpp" />
     <ClCompile Include="Tiles\GroundTile.cpp" />
     <ClCompile Include="Tiles\Tile.cpp" />
     <ClCompile Include="Tiles\TileParser.cpp" />
@@ -161,8 +162,8 @@
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="GameObjects\Missile.h" />
     <ClInclude Include="Tiles\BrickTile.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Tank.h" />
+    <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Tank.h" />
     <ClInclude Include="Tiles\GroundTile.h" />
     <ClInclude Include="Tiles\Tile.h" />
     <ClInclude Include="Tiles\TileParser.h" />

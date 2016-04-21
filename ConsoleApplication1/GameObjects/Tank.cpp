@@ -35,7 +35,7 @@
 //	"\\_@_@_/"
 //};
 
-
+using namespace GameObjects;
 
 Tank::Tank(int x, int y) : GameObject(x, y)
 {

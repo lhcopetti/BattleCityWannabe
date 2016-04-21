@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include "Console\Console.h"
 
-using namespace Game;
+using namespace GameObjects;
 
 GameObject::GameObject(int x, int y)
 {

@@ -4,7 +4,7 @@
 #include <string>
 
 #include "BattleCityClone.h"
-#include "GameObject.h"
+#include "GameObjects\GameObject.h"
 #include "Tiles\TileMap.h"
 
 
@@ -15,7 +15,7 @@ private:
 	std::vector<String> charWorld;
 	Tiles::TileMap* _tileMap;
 
-	std::vector<Game::GameObject*> objects;
+	std::vector<GameObjects::GameObject*> objects;
 	void clear();
 
 public:
@@ -29,8 +29,8 @@ public:
 	void update();
 	void paint();
 
-	void addGameObject(Game::GameObject* go);
-	void addKeyListener(Game::GameObject* go);
+	void addGameObject(GameObjects::GameObject* go);
+	void addKeyListener(GameObjects::GameObject* go);
 
 	static void paintAt(World& world, std::vector<String> toPaint, int x, int y);
 

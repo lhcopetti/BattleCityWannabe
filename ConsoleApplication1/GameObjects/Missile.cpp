@@ -28,9 +28,7 @@ Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(w
 
 void Missile::paint(World* world) const
 {
-	std::vector<String> x{ "^" };
-
-	World::paintAt(*world, x, yPos, xPos);
+	World::paintAt(*world, std::vector<String> { sprite }, yPos, xPos);
 }
 
 void Missile::onMoveUp()
@@ -58,13 +56,15 @@ void Missile::update()
 	switch (cDirection)
 	{
 	case UP:
-		yPos = (yPos - 1) % world->getHeight();
+//		yPos = (yPos - 1) % world->getHeight();
+		yPos = yPos - 1 < 0 ? world->getHeight() - (yPos - 1) : yPos - 1;
 		break;
 	case DOWN: 
 		yPos = (yPos + 1) % world->getHeight();
 		break;
 	case LEFT:
-		xPos = (xPos - 1) % world->getWidth();
+//		xPos = (xPos - 1) % world->getWidth();
+		xPos = xPos - 1 < 0 ? world->getWidth() - (xPos - 1) : xPos - 1;
 		break;
 	case RIGHT:
 		xPos = (xPos + 1) % world->getWidth();

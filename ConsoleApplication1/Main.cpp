@@ -23,7 +23,7 @@ int main()
 	Tiles::TileMap tileMap("defaultMap.txt");
 	World gameWorld(&tileMap);
 
-	Tank* playerTank = new Tank(50, 10);
+	Tank* playerTank = new Tank(&gameWorld, 50, 10);
 	gameWorld.addGameObject(playerTank);
 
 

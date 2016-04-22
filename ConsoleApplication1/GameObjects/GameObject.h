@@ -16,11 +16,14 @@ namespace GameObjects
 	protected:
 		int xPos;
 		int yPos;
+		bool _alive = true;
+		World* world;
 
 	public:
-		GameObject(int xPos, int yPos);
+		GameObject(World* world, int xPos, int yPos);
 		int getX() const;
 		int getY() const;
+		bool isAlive() const;
 
 		void moveDown();
 		void moveUp();
@@ -33,7 +36,6 @@ namespace GameObjects
 		virtual void onMoveRight() = 0;
 
 		virtual void update() = 0;
-
 		virtual void paint(World* context) const = 0;
 	};
 }

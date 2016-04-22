@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="GameObjects\Missile.h" />
+    <ClInclude Include="Notify\GameObjectDied.h" />
     <ClInclude Include="Tiles\BrickTile.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Tank.h" />

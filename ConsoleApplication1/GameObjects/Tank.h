@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "InputListener.h"
 #include "GameObjects\Missile.h"
+#include "Notify\GameObjectDied.h"
 
 class World;
 
@@ -11,7 +12,7 @@ class World;
 namespace GameObjects
 {
 
-	class Tank : public GameObjects::GameObject, public InputListener
+	class Tank : public GameObjects::GameObject, public InputListener, public Notify::GameObjectDied
 	{
 
 	private:
@@ -24,7 +25,7 @@ namespace GameObjects
 
 	public:
 
-		Tank(int x, int y);
+		Tank(World* world, int x, int y);
 
 		void update();
 		void Tank::paint(World* matrix) const;
@@ -38,5 +39,6 @@ namespace GameObjects
 		virtual void onMoveLeft();
 		virtual void onMoveRight();
 
+		void onGameObjectDeath(GameObjects::GameObject* gO);
 	};
 }

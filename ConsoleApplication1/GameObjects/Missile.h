@@ -11,16 +11,20 @@ namespace GameObjects
 
 	private:
 		Direction cDirection;
-
+		String sprite;
+		int countdown = 50;
 
 	public:
+		Missile(World* world, int x, int y, Direction direction);
 
-		virtual void onMoveDown() = 0;
-		virtual void onMoveUp() = 0;
-		virtual void onMoveLeft() = 0;
-		virtual void onMoveRight() = 0;
+		virtual void onMoveDown();
+		virtual void onMoveUp();
+		virtual void onMoveLeft();
+		virtual void onMoveRight();
 
 		virtual void paint(World* context) const;
+
+		void update();
 
 	};
 }

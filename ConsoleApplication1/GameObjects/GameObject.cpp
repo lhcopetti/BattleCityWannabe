@@ -3,8 +3,9 @@
 
 using namespace GameObjects;
 
-GameObject::GameObject(int x, int y)
+GameObject::GameObject(World* w, int x, int y)
 {
+	this->world = w;
 	this->xPos = x;
 	this->yPos = y;
 }
@@ -46,4 +47,9 @@ void GameObject::moveRight()
 	xPos++;
 
 	onMoveRight();
+}
+
+bool GameObject::isAlive() const
+{
+	return _alive;
 }

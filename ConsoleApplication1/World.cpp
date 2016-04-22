@@ -30,7 +30,12 @@ int World::getWidth() const
 
 void World::addGameObject(GameObjects::GameObject* go)
 {
-	objects.push_back(go);
+	addGameObject(go, NULL);
+}
+
+void World::addGameObject(GameObjects::GameObject* gO, Notify::GameObjectDied* gDied)
+{
+	_notifyObjects[gO] = gDied;
 }
 
 void World::clear()
@@ -57,9 +62,9 @@ void World::paint()
 		}
 	}
 
-	for each (GameObjects::GameObject* gO in objects)
+	for (std::map<GameObjects::GameObject*, Notify::GameObjectDied*>::iterator iter = _notifyObjects.begin(); iter != _notifyObjects.end(); ++iter)
 	{
-		gO->paint(this);
+		iter->first->paint(this);
 	}
 
 	for (int i = 0; i < getHeight(); i++)
@@ -80,5 +85,20 @@ void World::paintAt(World& world, std::vector<String> toPaint, int x, int y)
 
 void World::update()
 {
+	for (auto iter = _notifyObjects.cbegin(); iter != _notifyObjects.cend();)
+	{
+		GameObjects::GameObject* gO = iter->first;
+		Notify::GameObjectDied* gODied = iter->second;
 
+		gO->update();
+
+		if (!gO->isAlive())
+		{
+			_notifyObjects.erase(iter++);
+			if (gODied != NULL)
+				gODied->onGameObjectDeath(gO);
+		}
+		else
+			++iter;
+	}
 }

@@ -37,9 +37,10 @@
 
 using namespace GameObjects;
 
-Tank::Tank(int x, int y) : GameObject(x, y)
+Tank::Tank(World* world, int x, int y) : GameObject(world, x, y)
 {
 	cDirection = UP;
+	missile = NULL;
 }
 
 void Tank::paint(World* context) const
@@ -56,7 +57,12 @@ void Tank::keyPressed(int ch)
 
 void Tank::shoot()
 {
-	std::cout << "Tank is shooting crazy" << std::endl;
+	if (missile == NULL)
+	{
+		missile = new Missile(world, xPos, yPos, cDirection);
+		world->addGameObject(missile, this);
+		std::cout << "Tank is shooting crazy" << std::endl;
+	}
 }
 
 void Tank::onMoveUp()
@@ -116,5 +122,11 @@ std::vector<String> Tank::getSpriteDirection() const
 
 void Tank::update()
 {
+}
 
+void Tank::onGameObjectDeath(GameObjects::GameObject* gO)
+{
+	delete missile;
+	missile = NULL;
+	std::cout << "Shots fired. It was not pretty!!!" << std::endl;
 }

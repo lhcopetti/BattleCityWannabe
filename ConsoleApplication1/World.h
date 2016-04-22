@@ -1,11 +1,13 @@
 #pragma once
 
 #include <vector>
+#include <map>
 #include <string>
 
 #include "BattleCityClone.h"
 #include "GameObjects\GameObject.h"
 #include "Tiles\TileMap.h"
+#include "Notify\GameObjectDied.h"
 
 
 
@@ -15,7 +17,8 @@ private:
 	std::vector<String> charWorld;
 	Tiles::TileMap* _tileMap;
 
-	std::vector<GameObjects::GameObject*> objects;
+	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> _notifyObjects;
+
 	void clear();
 
 public:
@@ -30,6 +33,7 @@ public:
 	void paint();
 
 	void addGameObject(GameObjects::GameObject* go);
+	void addGameObject(GameObjects::GameObject* gO, Notify::GameObjectDied* gDied);
 	void addKeyListener(GameObjects::GameObject* go);
 
 	static void paintAt(World& world, std::vector<String> toPaint, int x, int y);

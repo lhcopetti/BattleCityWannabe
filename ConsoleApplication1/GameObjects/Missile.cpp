@@ -53,26 +53,35 @@ void Missile::onMoveRight()
 
 void Missile::update()
 {
-	switch (cDirection)
-	{
-	case UP:
-		yPos = (yPos - 1) % world->getHeight();
-		break;
-	case DOWN: 
-		yPos = (yPos + 1) % world->getHeight();
-		break;
-	case LEFT:
-		xPos = (xPos - 1) % world->getWidth();
-		break;
-	case RIGHT:
-		xPos = (xPos + 1) % world->getWidth();
-		break;
-	}
+	if (!_alive)
+		return;
 
 	if (countdown > 0)
 	{
 		countdown--;
 		if (countdown == 0)
+		{
 			_alive = false;
+			return;
+		}
 	}
+
+	switch (cDirection)
+	{
+	case UP:
+		yPos -= 1;
+		break;
+	case DOWN:
+		yPos += 1;
+		break;
+	case LEFT:
+		xPos -= 1;
+		break;
+	case RIGHT:
+		xPos += 1;
+		break;
+	}
+
+	if (xPos < 0 || xPos >= world->getWidth() || yPos < 0 || yPos >= world->getHeight())
+		_alive = false;
 }

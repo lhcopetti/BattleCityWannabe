@@ -25,16 +25,6 @@ namespace GameObjects
 		int getY() const;
 		bool isAlive() const;
 
-		void moveDown();
-		void moveUp();
-		void moveLeft();
-		void moveRight();
-
-		virtual void onMoveDown() = 0;
-		virtual void onMoveUp() = 0;
-		virtual void onMoveLeft() = 0;
-		virtual void onMoveRight() = 0;
-
 		virtual void update() = 0;
 		virtual void paint(World* context) const = 0;
 	};

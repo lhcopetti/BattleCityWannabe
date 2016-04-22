@@ -65,23 +65,27 @@ void Tank::shoot()
 	}
 }
 
-void Tank::onMoveUp()
+void Tank::moveUp()
 {
+	yPos--;
 	cDirection = UP;
 }
 
-void Tank::onMoveDown()
+void Tank::moveDown()
 {
+	yPos++;
 	cDirection = DOWN;
 }
 
-void Tank::onMoveLeft()
+void Tank::moveLeft()
 {
+	xPos--;
 	cDirection = LEFT;
 }
 
-void Tank::onMoveRight()
+void Tank::moveRight()
 {
+	xPos++;
 	cDirection = RIGHT;
 }
 
@@ -89,35 +93,6 @@ std::vector<String> Tank::getSpriteDirection() const
 {
 	std::vector<String> vec{ "@@", "@@" };
 	return vec;
-	//switch (cDirection)
-	//{
-	//case UP:
-	//	vec.push_back(spriteUP[0]);
-	//	vec.push_back(spriteUP[1]);
-	//	vec.push_back(spriteUP[2]);
-	//	vec.push_back(spriteUP[3]);
-	//	vec.push_back(spriteUP[4]);
-	//	break;
-	//case DOWN:
-	//	vec.push_back(spriteDOWN[0]);
-	//	vec.push_back(spriteDOWN[1]);
-	//	vec.push_back(spriteDOWN[2]);
-	//	vec.push_back(spriteDOWN[3]);
-	//	vec.push_back(spriteDOWN[4]);
-	//	break;
-	//case LEFT:
-	//	vec.push_back(spriteLEFT[0]);
-	//	vec.push_back(spriteLEFT[1]);
-	//	vec.push_back(spriteLEFT[2]);
-	//	break;
-	//case RIGHT:
-	//	vec.push_back(spriteRIGHT[0]);
-	//	vec.push_back(spriteRIGHT[1]);
-	//	vec.push_back(spriteRIGHT[2]);
-	//	break;
-	//}
-
-	//return vec;
 }
 
 void Tank::update()

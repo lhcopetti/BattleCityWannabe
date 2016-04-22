@@ -20,35 +20,6 @@ int GameObject::getY() const
 	return yPos;
 }
 
-void GameObject::moveUp()
-{
-	if (yPos > 0)
-		yPos--;
-
-	onMoveUp();
-}
-
-void GameObject::moveDown()
-{
-	yPos++;
-
-	onMoveDown();
-}
-
-void GameObject::moveLeft()
-{
-	xPos--;
-
-	onMoveLeft();
-}
-
-void GameObject::moveRight()
-{
-	xPos++;
-
-	onMoveRight();
-}
-
 bool GameObject::isAlive() const
 {
 	return _alive;

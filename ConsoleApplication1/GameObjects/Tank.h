@@ -34,10 +34,10 @@ namespace GameObjects
 
 		void Tank::shoot();
 
-		virtual void onMoveDown();
-		virtual void onMoveUp();
-		virtual void onMoveLeft();
-		virtual void onMoveRight();
+		void moveDown();
+		void moveUp();
+		void moveLeft();
+		void moveRight();
 
 		void onGameObjectDeath(GameObjects::GameObject* gO);
 	};

@@ -5,7 +5,7 @@
 
 using namespace Tiles;
 
-GroundTile::GroundTile(int x, int y) : Tile(x, y)
+GroundTile::GroundTile(int x, int y) : Tile(x, y, true)
 {
 }
 

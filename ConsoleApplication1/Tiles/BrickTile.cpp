@@ -3,17 +3,17 @@
 
 using namespace Tiles;
 
-BrickTile::BrickTile(int x, int y) : Tile(x, y)
+BrickTile::BrickTile(int x, int y) : Tile(x, y, false)
 {
 }
 
 void BrickTile::paint(World* world) const
 {
 	std::vector<String> test
-		{	"____",
-			"|&&|",
-			"|&&|",
-			"____" };
+	{	"####",
+		"####",
+		"####",
+		"####" };
 
 	World::paintAt(*world, test, getXScaled(), getYScaled());
 }

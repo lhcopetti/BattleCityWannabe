@@ -22,6 +22,7 @@ namespace GameObjects
 		Missile *missile;
 
 		std::vector<String> getSpriteDirection() const;
+		bool isTileWalkable(int x, int y) const;
 
 	public:
 

@@ -102,3 +102,13 @@ void World::update()
 			++iter;
 	}
 }
+
+bool World::isValidCoordinate(int x, int y)
+{
+	return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
+}
+
+Tiles::Tile* World::getTileFromCoordinate(int x, int y)
+{
+	return _tileMap->getTiles()[(x / TILE_WIDTH)][(y / TILE_HEIGHT)];
+}

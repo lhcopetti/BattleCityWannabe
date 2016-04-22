@@ -36,6 +36,9 @@ public:
 	void addGameObject(GameObjects::GameObject* gO, Notify::GameObjectDied* gDied);
 	void addKeyListener(GameObjects::GameObject* go);
 
+	bool isValidCoordinate(int x, int y);
+	Tiles::Tile* getTileFromCoordinate(int x, int y);
+
 	static void paintAt(World& world, std::vector<String> toPaint, int x, int y);
 
 };

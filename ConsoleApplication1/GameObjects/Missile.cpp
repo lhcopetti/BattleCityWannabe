@@ -56,15 +56,13 @@ void Missile::update()
 	switch (cDirection)
 	{
 	case UP:
-//		yPos = (yPos - 1) % world->getHeight();
-		yPos = yPos - 1 < 0 ? world->getHeight() - (yPos - 1) : yPos - 1;
+		yPos = (yPos - 1) % world->getHeight();
 		break;
 	case DOWN: 
 		yPos = (yPos + 1) % world->getHeight();
 		break;
 	case LEFT:
-//		xPos = (xPos - 1) % world->getWidth();
-		xPos = xPos - 1 < 0 ? world->getWidth() - (xPos - 1) : xPos - 1;
+		xPos = (xPos - 1) % world->getWidth();
 		break;
 	case RIGHT:
 		xPos = (xPos + 1) % world->getWidth();

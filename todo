@@ -1,3 +1,10 @@
 #TODO
 
 - Add debug menu
+	Time Running:
+	Missiles Fired
+	Current x and y
+- Add collision detection (TILES) for the missile
+
+-Add score counter on top and name of player
+- use some ascii extended characters (works locally)

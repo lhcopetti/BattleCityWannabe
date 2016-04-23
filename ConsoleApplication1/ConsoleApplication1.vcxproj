@@ -144,7 +144,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="GameObjects\Missile.cpp" />
+    <ClCompile Include="Tiles\BlownUpTile.cpp" />
     <ClCompile Include="Tiles\BrickTile.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Tank.cpp" />
@@ -161,12 +163,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h" />
+    <ClInclude Include="Collision\CollisionDetector.h" />
     <ClInclude Include="GameObjects\Missile.h" />
     <ClInclude Include="Notify\GameObjectDied.h" />
+    <ClInclude Include="Tiles\BlownUpTile.h" />
     <ClInclude Include="Tiles\BrickTile.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Tank.h" />
     <ClInclude Include="Tiles\GroundTile.h" />
+    <ClInclude Include="Tiles\Header.h" />
     <ClInclude Include="Tiles\Tile.h" />
     <ClInclude Include="Tiles\TileParser.h" />
     <ClInclude Include="Tiles\TileMap.h" />

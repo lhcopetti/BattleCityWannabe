@@ -63,6 +63,12 @@
     <ClCompile Include="GameObjects\Tank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Collision\CollisionDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tiles\BlownUpTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h">
@@ -114,6 +120,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Notify\GameObjectDied.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\CollisionDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tiles\Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tiles\BlownUpTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

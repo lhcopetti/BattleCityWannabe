@@ -3,14 +3,14 @@
 
 using namespace Tiles;
 
-BrickTile::BrickTile(int x, int y) : Tile(x, y, false)
+BrickTile::BrickTile(int x, int y) : Tile(x, y, false, true)
 {
 }
 
 void BrickTile::paint(World* world) const
 {
 	std::vector<String> test
-	{	"####",
+	{ "####",
 		"####",
 		"####",
 		"####" };

@@ -57,7 +57,7 @@ void World::paint()
 		{
 			assert(NULL != _tileMap->getTiles());
 			Tiles::Tile* t = _tileMap->getTiles()[i][j];
-//			std::cout << "Running tile at: " << t->getX() << " and " << t->getY() << " Header Guard " << std::endl;
+			//			std::cout << "Running tile at: " << t->getX() << " and " << t->getY() << " Header Guard " << std::endl;
 			_tileMap->getTiles()[i][j]->paint(this);
 		}
 	}
@@ -101,6 +101,21 @@ void World::update()
 		else
 			++iter;
 	}
+
+	_collisionDetector->update();
+
+	Tiles::Tile*** tiles = _tileMap->getTiles();
+
+	for (int i = 0; i < _tileMap->height(); i++)
+		for (int j = 0; j < _tileMap->width(); j++)
+		{
+			if (tiles[i][j]->isDestroyed())
+			{
+				delete tiles[i][j];
+				tiles[i][j] = Tiles::Tile::createBlownUpTile(i, j);
+			}
+		}
+
 }
 
 bool World::isValidCoordinate(int x, int y)

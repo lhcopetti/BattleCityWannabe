@@ -1,13 +1,16 @@
 
 #include "Tile.h"
+#include "BlownUpTile.h"
 
 using namespace Tiles;
 
-Tile::Tile(int x, int y, bool walkable)
+Tile::Tile(int x, int y, bool walkable, bool isWall)
 {
 	_x = x;
 	_y = y;
 	_walkable = walkable;
+	_destroyed = false;
+	_isWall = isWall;
 }
 
 int Tile::getX() const
@@ -33,4 +36,20 @@ int Tile::getYScaled() const
 bool Tile::isWalkable() const
 {
 	return _walkable;
+}
+
+bool Tile::isWall() const
+{
+	return _isWall;
+}
+
+void Tile::destroy()
+{
+	_destroyed = true;
+	_isWall = false;
+}
+
+Tile* Tile::createBlownUpTile(int x, int y)
+{
+	return new Tiles::BlownUpTile(x, y);
 }

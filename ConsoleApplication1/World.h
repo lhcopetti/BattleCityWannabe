@@ -8,7 +8,7 @@
 #include "GameObjects\GameObject.h"
 #include "Tiles\TileMap.h"
 #include "Notify\GameObjectDied.h"
-
+#include "Collision\CollisionDetector.h"
 
 
 class World
@@ -18,6 +18,7 @@ private:
 	Tiles::TileMap* _tileMap;
 
 	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> _notifyObjects;
+	Collision::CollisionDetector* _collisionDetector;
 
 	void clear();
 
@@ -28,6 +29,10 @@ public:
 
 	int getWidth() const;
 	int getHeight() const;
+
+	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> &getObjects() { return _notifyObjects; };
+
+	void setCollisionDetector(Collision::CollisionDetector* coll) { _collisionDetector = coll; };
 
 	void update();
 	void paint();

@@ -22,6 +22,7 @@ int main()
 {
 	Tiles::TileMap tileMap("defaultMap.txt");
 	World gameWorld(&tileMap);
+	Collision::CollisionDetector collisionDetector(&gameWorld);
 
 	Tank* playerTank = new Tank(&gameWorld, 50, 10);
 	gameWorld.addGameObject(playerTank);

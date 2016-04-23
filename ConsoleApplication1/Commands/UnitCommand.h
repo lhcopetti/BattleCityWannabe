@@ -10,55 +10,55 @@ namespace UnitCommand
 
 	class UnitCommand
 	{
-	
+
+	protected:
+		Tank *_tank;
 
 	public:
-		Tank *tank;
+		UnitCommand(Tank* tank) { _tank = tank; };
 
-		UnitCommand(Tank* tank);
-
-		virtual void execute() = 0;
+		virtual bool execute() = 0;
 	};
 
 	class GoLeftCommand : public UnitCommand
 	{
 
 	public:
-		GoLeftCommand(Tank* tank);
+		GoLeftCommand(Tank* tank) : UnitCommand(tank) {};
 
-		void GoLeftCommand::execute();
+		bool GoLeftCommand::execute();
 	};
 
 	class GoRightCommand : public UnitCommand
 	{
 	public:
-		GoRightCommand(Tank* tank);
+		GoRightCommand(Tank* tank) : UnitCommand(tank) {};
 
-		void GoRightCommand::execute();
+		bool GoRightCommand::execute();
 	};
 
 	class GoUpCommand : public UnitCommand
 	{
 	public:
-		GoUpCommand(Tank* tank);
+		GoUpCommand(Tank* tank) : UnitCommand(tank) {};
 
-		void GoUpCommand::execute();
+		bool GoUpCommand::execute();
 	};
 
 	class GoDownCommand : public UnitCommand
 	{
 	public:
-		GoDownCommand(Tank* tank);
+		GoDownCommand(Tank* tank) : UnitCommand(tank) {};
 
-		void GoDownCommand::execute();
+		bool GoDownCommand::execute();
 	};
 
 
 	class ShootCommand : public UnitCommand
 	{
 	public:
-		ShootCommand(Tank* tank);
+		ShootCommand(Tank* tank) : UnitCommand(tank) {};
 
-		void ShootCommand::execute();
+		bool ShootCommand::execute();
 	};
 }

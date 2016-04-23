@@ -4,56 +4,28 @@
 
 namespace UnitCommand
 {
-
-	UnitCommand::UnitCommand(Tank *tank)
+	bool GoLeftCommand::GoLeftCommand::execute()
 	{
-		this->tank = tank;
+		return _tank->moveLeft();
 	}
 
-	GoLeftCommand::GoLeftCommand(Tank* tank) : UnitCommand(tank)
+	bool GoRightCommand::execute()
 	{
+		return _tank->moveRight();
 	}
 
-	void GoLeftCommand::GoLeftCommand::execute()
+	bool GoUpCommand::execute()
 	{
-		tank->moveLeft();
+		return _tank->moveUp();
 	}
 
-	GoRightCommand::GoRightCommand(Tank* tank) : UnitCommand(tank)
+	bool GoDownCommand::execute()
 	{
+		return _tank->moveDown();
 	}
 
-	void GoRightCommand::execute()
+	bool ShootCommand::execute()
 	{
-		tank->moveRight();
-	}
-
-
-	GoUpCommand::GoUpCommand(Tank* tank) : UnitCommand(tank)
-	{
-	}
-
-	void GoUpCommand::execute()
-	{
-		tank->moveUp();
-	}
-
-	GoDownCommand::GoDownCommand(Tank* tank) : UnitCommand(tank)
-	{
-	}
-
-	void GoDownCommand::execute()
-	{
-		tank->moveDown();
-	}
-
-
-	ShootCommand::ShootCommand(Tank* tank) : UnitCommand(tank)
-	{
-	}
-
-	void ShootCommand::execute()
-	{
-		tank->shoot();
+		return _tank->shoot();
 	}
 }

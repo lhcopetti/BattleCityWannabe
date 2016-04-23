@@ -33,12 +33,12 @@ namespace GameObjects
 
 		void Tank::keyPressed(int ch);
 
-		void Tank::shoot();
+		bool Tank::shoot();
 
-		void moveDown();
-		void moveUp();
-		void moveLeft();
-		void moveRight();
+		bool moveDown();
+		bool moveUp();
+		bool moveLeft();
+		bool moveRight();
 
 		void onGameObjectDeath(GameObjects::GameObject* gO);
 	};

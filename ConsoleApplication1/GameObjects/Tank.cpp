@@ -55,72 +55,78 @@ void Tank::keyPressed(int ch)
 	std::cout << "Some key has been pressed: " << ch << std::endl;
 }
 
-void Tank::shoot()
+bool Tank::shoot()
 {
-	if (missile == NULL)
-	{
-		missile = new Missile(world, xPos, yPos, cDirection);
-		world->addGameObject(missile, this);
-		std::cout << "Tank is shooting crazy" << std::endl;
-	}
+	if (missile)
+		/* Cannot shoot until the missile is destroyed */
+		return false;
+
+	missile = new Missile(world, xPos, yPos, cDirection);
+	world->addGameObject(missile, this);
+	std::cout << "Tank is shooting crazy" << std::endl;
+	return true;
 }
 
-void Tank::moveUp()
+bool Tank::moveUp()
 {
 	cDirection = UP;
 
 	if (!world->isValidCoordinate(xPos, yPos - 1))
-		return;
+		return false;
 
 	for (int i = 0; i < TANK_WIDTH; i++)
 		if (!isTileWalkable(xPos + i, yPos - 1))
-			return;
+			return false;
 
 	yPos--;
+	return true;
 }
 
-void Tank::moveDown()
+bool Tank::moveDown()
 {
 	cDirection = DOWN;
 
 	if (!world->isValidCoordinate(xPos, yPos + 1 + (TANK_HEIGHT - 1)))
-		return;
+		return false;
 
 	for (int i = 0; i < TANK_WIDTH; i++)
 		/* TANK_HEIGHT -1 because yPos already points to one of the tank's square. */
 		if (!isTileWalkable(xPos + i, yPos + (TANK_HEIGHT - 1) + 1))
-			return;
+			return false;
 
 	yPos++;
+	return true;
 }
 
-void Tank::moveLeft()
+bool Tank::moveLeft()
 {
 	cDirection = LEFT;
 
 	if (!world->isValidCoordinate(xPos - 1, yPos))
-		return;
+		return false;
 
 	for (int i = 0; i < TANK_HEIGHT; i++)
 		if (!isTileWalkable(xPos - 1, yPos + i))
-			return;
+			return false;
 
 	xPos--;
+	return true;
 }
 
-void Tank::moveRight()
+bool Tank::moveRight()
 {
 	cDirection = RIGHT;
 
 	if (!world->isValidCoordinate(xPos + (TANK_WIDTH - 1) + 1, yPos))
-		return;
+		return false;
 
 	for (int i = 0; i < TANK_HEIGHT; i++)
 		/* TANK_HEIGHT -1 because yPos already points to one of the tank's square. */
 		if (!isTileWalkable(xPos + (TANK_WIDTH - 1) + 1, yPos + i))
-			return;
+			return false;
 
 	xPos++;
+	return true;
 }
 
 bool Tank::isTileWalkable(int x, int y) const

@@ -83,7 +83,7 @@ void Tank::moveDown()
 {
 	cDirection = DOWN;
 
-	if (!world->isValidCoordinate(xPos, yPos + 1))
+	if (!world->isValidCoordinate(xPos, yPos + 1 + (TANK_HEIGHT - 1)))
 		return;
 
 	for (int i = 0; i < TANK_WIDTH; i++)
@@ -112,7 +112,7 @@ void Tank::moveRight()
 {
 	cDirection = RIGHT;
 
-	if (!world->isValidCoordinate(xPos + 1, yPos))
+	if (!world->isValidCoordinate(xPos + (TANK_WIDTH - 1) + 1, yPos))
 		return;
 
 	for (int i = 0; i < TANK_HEIGHT; i++)

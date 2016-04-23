@@ -3,11 +3,12 @@
 
 using namespace GameObjects;
 
-GameObject::GameObject(World* w, int x, int y)
+GameObject::GameObject(World* w, int x, int y, GameObjectType type)
 {
 	this->world = w;
 	this->xPos = x;
 	this->yPos = y;
+	this->_type = type;
 }
 
 int GameObject::getX() const
@@ -23,4 +24,9 @@ int GameObject::getY() const
 bool GameObject::isAlive() const
 {
 	return _alive;
+}
+
+GameObjectType GameObject::getType() const
+{
+	return _type;
 }

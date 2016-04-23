@@ -37,7 +37,7 @@
 
 using namespace GameObjects;
 
-Tank::Tank(World* world, int x, int y) : GameObject(world, x, y)
+Tank::Tank(World* world, int x, int y) : GameObject(world, x, y, GameObjectType::TANK)
 {
 	cDirection = UP;
 	missile = NULL;

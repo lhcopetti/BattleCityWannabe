@@ -5,7 +5,7 @@
 using namespace GameObjects;
 
 
-Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(world, x, y)
+Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(world, x, y, GameObjectType::MISSILE)
 {
 	cDirection = direction;
 

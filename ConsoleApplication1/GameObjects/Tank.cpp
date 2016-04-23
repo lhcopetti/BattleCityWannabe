@@ -67,6 +67,8 @@ void Tank::shoot()
 
 void Tank::moveUp()
 {
+	cDirection = UP;
+
 	if (!world->isValidCoordinate(xPos, yPos - 1))
 		return;
 
@@ -75,11 +77,12 @@ void Tank::moveUp()
 			return;
 
 	yPos--;
-	cDirection = UP;
 }
 
 void Tank::moveDown()
 {
+	cDirection = DOWN;
+
 	if (!world->isValidCoordinate(xPos, yPos + 1))
 		return;
 
@@ -89,11 +92,12 @@ void Tank::moveDown()
 			return;
 
 	yPos++;
-	cDirection = DOWN;
 }
 
 void Tank::moveLeft()
 {
+	cDirection = LEFT;
+
 	if (!world->isValidCoordinate(xPos - 1, yPos))
 		return;
 
@@ -102,11 +106,12 @@ void Tank::moveLeft()
 			return;
 
 	xPos--;
-	cDirection = LEFT;
 }
 
 void Tank::moveRight()
 {
+	cDirection = RIGHT;
+
 	if (!world->isValidCoordinate(xPos + 1, yPos))
 		return;
 
@@ -116,7 +121,6 @@ void Tank::moveRight()
 			return;
 
 	xPos++;
-	cDirection = RIGHT;
 }
 
 bool Tank::isTileWalkable(int x, int y) const

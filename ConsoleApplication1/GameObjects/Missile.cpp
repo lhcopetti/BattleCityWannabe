@@ -85,3 +85,12 @@ void Missile::update()
 	if (xPos < 0 || xPos >= world->getWidth() || yPos < 0 || yPos >= world->getHeight())
 		_alive = false;
 }
+
+void Missile::onTile(Tiles::Tile* tile)
+{
+	if (tile->isWall())
+	{
+		_alive = false;
+		tile->destroy();
+	}
+}

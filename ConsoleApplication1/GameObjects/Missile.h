@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObjects\GameObject.h"
+#include "Tiles\Tile.h"
 
 class World;
 
@@ -23,6 +24,8 @@ namespace GameObjects
 		virtual void onMoveRight();
 
 		virtual void paint(World* context) const;
+
+		void onTile(Tiles::Tile* tile);
 
 		void update();
 

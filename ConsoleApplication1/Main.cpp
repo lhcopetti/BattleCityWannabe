@@ -11,6 +11,7 @@
 #include "GameObjects\Tank.h"
 #include "Commands\UnitCommand.h"
 #include "Tiles\TileMap.h"
+#include "IA\IAComponent.h"
 
 #include "World.h"
 
@@ -25,7 +26,12 @@ int main()
 	Collision::CollisionDetector collisionDetector(&gameWorld);
 
 	Tank* playerTank = new Tank(&gameWorld, 50, 10);
+	Tank* iaTank = new Tank(&gameWorld, 10, 50);
+
 	gameWorld.addGameObject(playerTank);
+	gameWorld.addGameObject(iaTank);
+
+	IA::IAComponent iA(iaTank);
 
 
 	while (true)
@@ -63,10 +69,12 @@ int main()
 
 			if (command)
 			{
-				command->execute(&gameWorld);
+				command->execute();
 				delete command;
 			}
 		}
+
+		iA.update();
 
 		gameWorld.update();
 		gameWorld.paint();

@@ -7,4 +7,6 @@
 - Add collision detection (TILES) for the missile
 
 -Add score counter on top and name of player
-- use some ascii extended characters (works locally)
+- use some ascii extended characters (works locally [with the \xB2 for example]
+
+- Esc to close game

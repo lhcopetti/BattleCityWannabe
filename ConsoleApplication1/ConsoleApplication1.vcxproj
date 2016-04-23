@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="GameObjects\Missile.cpp" />
+    <ClCompile Include="IA\IAComponent.cpp" />
     <ClCompile Include="Tiles\BlownUpTile.cpp" />
     <ClCompile Include="Tiles\BrickTile.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="Collision\CollisionDetector.h" />
     <ClInclude Include="GameObjects\Missile.h" />
+    <ClInclude Include="IA\IAComponent.h" />
     <ClInclude Include="Notify\GameObjectDied.h" />
     <ClInclude Include="Tiles\BlownUpTile.h" />
     <ClInclude Include="Tiles\BrickTile.h" />

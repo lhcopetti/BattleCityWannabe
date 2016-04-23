@@ -2,7 +2,6 @@
 
 #include "GameObjects\GameObject.h"
 #include "GameObjects\Tank.h"
-#include "World.h"
 
 using namespace GameObjects;
 
@@ -18,7 +17,7 @@ namespace UnitCommand
 
 		UnitCommand(Tank* tank);
 
-		virtual void execute(World* context) = 0;
+		virtual void execute() = 0;
 	};
 
 	class GoLeftCommand : public UnitCommand
@@ -27,7 +26,7 @@ namespace UnitCommand
 	public:
 		GoLeftCommand(Tank* tank);
 
-		void GoLeftCommand::execute(World* context);
+		void GoLeftCommand::execute();
 	};
 
 	class GoRightCommand : public UnitCommand
@@ -35,7 +34,7 @@ namespace UnitCommand
 	public:
 		GoRightCommand(Tank* tank);
 
-		void GoRightCommand::execute(World* context);
+		void GoRightCommand::execute();
 	};
 
 	class GoUpCommand : public UnitCommand
@@ -43,7 +42,7 @@ namespace UnitCommand
 	public:
 		GoUpCommand(Tank* tank);
 
-		void GoUpCommand::execute(World* context);
+		void GoUpCommand::execute();
 	};
 
 	class GoDownCommand : public UnitCommand
@@ -51,7 +50,7 @@ namespace UnitCommand
 	public:
 		GoDownCommand(Tank* tank);
 
-		void GoDownCommand::execute(World* context);
+		void GoDownCommand::execute();
 	};
 
 
@@ -60,6 +59,6 @@ namespace UnitCommand
 	public:
 		ShootCommand(Tank* tank);
 
-		void ShootCommand::execute(World* context);
+		void ShootCommand::execute();
 	};
 }

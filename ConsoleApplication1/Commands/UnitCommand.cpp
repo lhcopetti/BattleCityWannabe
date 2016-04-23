@@ -14,7 +14,7 @@ namespace UnitCommand
 	{
 	}
 
-	void GoLeftCommand::GoLeftCommand::execute(World* context)
+	void GoLeftCommand::GoLeftCommand::execute()
 	{
 		tank->moveLeft();
 	}
@@ -23,7 +23,7 @@ namespace UnitCommand
 	{
 	}
 
-	void GoRightCommand::execute(World* context)
+	void GoRightCommand::execute()
 	{
 		tank->moveRight();
 	}
@@ -33,7 +33,7 @@ namespace UnitCommand
 	{
 	}
 
-	void GoUpCommand::execute(World* context)
+	void GoUpCommand::execute()
 	{
 		tank->moveUp();
 	}
@@ -42,7 +42,7 @@ namespace UnitCommand
 	{
 	}
 
-	void GoDownCommand::execute(World* context)
+	void GoDownCommand::execute()
 	{
 		tank->moveDown();
 	}
@@ -52,7 +52,7 @@ namespace UnitCommand
 	{
 	}
 
-	void ShootCommand::execute(World* context)
+	void ShootCommand::execute()
 	{
 		tank->shoot();
 	}

@@ -11,10 +11,10 @@
 #include "GameObjects\Tank.h"
 #include "Commands\UnitCommand.h"
 #include "Tiles\TileMap.h"
-#include "IA\IAComponent.h"
+#include "IA\PrettyDumbIA.h"
 
 #include "World.h"
-
+#include "AStar.h"
 //#include "Tiles\TileParser.h"
 
 using namespace std;
@@ -31,19 +31,18 @@ int main()
 	gameWorld.addGameObject(playerTank);
 	gameWorld.addGameObject(iaTank);
 
-	IA::IAComponent iA(iaTank);
-
+	IA::PrettyDumbIA iA(iaTank);
 
 	while (true)
 	{
 		if (_kbhit())
 		{
 			int keyPressed = _getch();
-			cout << "Key Pressed: " << keyPressed << endl;
+			//cout << "Key Pressed: " << keyPressed << endl;
 			if (224 == keyPressed)
 				keyPressed = _getch();
 
-			cout << "Key Pressed: " << keyPressed << endl;
+			//cout << "Key Pressed: " << keyPressed << endl;
 
 			UnitCommand::UnitCommand* command = NULL;
 

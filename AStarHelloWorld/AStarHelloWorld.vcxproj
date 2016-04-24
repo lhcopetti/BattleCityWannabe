@@ -19,18 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CD2798FC-272C-44F8-9D62-7D4D61E5F293}</ProjectGuid>
+    <ProjectGuid>{93705940-EF29-4E84-81A3-6B0D869027DC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <RootNamespace>AStarHelloWorld</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>BattleCityWannabe</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -89,12 +88,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\AStarHelloWorld;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,57 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Collision\CollisionDetector.cpp" />
-    <ClCompile Include="ConsoleTest.cpp" />
-    <ClCompile Include="GameObjects\Missile.cpp" />
-    <ClCompile Include="IA\IAComponent.cpp" />
-    <ClCompile Include="IA\PrettyDumbIA.cpp" />
-    <ClCompile Include="Tiles\BlownUpTile.cpp" />
-    <ClCompile Include="Tiles\BrickTile.cpp" />
-    <ClCompile Include="GameObjects\GameObject.cpp" />
-    <ClCompile Include="GameObjects\Tank.cpp" />
-    <ClCompile Include="Tiles\GroundTile.cpp" />
-    <ClCompile Include="Tiles\Tile.cpp" />
-    <ClCompile Include="Tiles\TileParser.cpp" />
-    <ClCompile Include="Tiles\TileMap.cpp" />
-    <ClCompile Include="Commands\UnitCommand.cpp" />
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="Console\Console.cpp" />
-    <ClCompile Include="GameMachine.cpp" />
+    <ClInclude Include="AStar.h" />
+    <ClInclude Include="GridCell.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="GridCell.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PrintingUtils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BattleCityClone.h" />
-    <ClInclude Include="Collision\CollisionDetector.h" />
-    <ClInclude Include="GameObjects\Missile.h" />
-    <ClInclude Include="IA\IAComponent.h" />
-    <ClInclude Include="IA\PrettyDumbIA.h" />
-    <ClInclude Include="Notify\GameObjectDied.h" />
-    <ClInclude Include="Tiles\BlownUpTile.h" />
-    <ClInclude Include="Tiles\BrickTile.h" />
-    <ClInclude Include="GameObjects\GameObject.h" />
-    <ClInclude Include="GameObjects\Tank.h" />
-    <ClInclude Include="Tiles\GroundTile.h" />
-    <ClInclude Include="Tiles\Header.h" />
-    <ClInclude Include="Tiles\Tile.h" />
-    <ClInclude Include="Tiles\TileParser.h" />
-    <ClInclude Include="Tiles\TileMap.h" />
-    <ClInclude Include="World.h" />
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="Commands\UnitCommand.h" />
-    <ClInclude Include="Console\Console.h" />
-    <ClInclude Include="GameMachine.h" />
-    <ClInclude Include="InputListener.h" />
-    <ClInclude Include="Paintable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="defaultMap.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AStarHelloWorld\AStarHelloWorld.vcxproj">
-      <Project>{93705940-ef29-4e84-81a3-6b0d869027dc}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

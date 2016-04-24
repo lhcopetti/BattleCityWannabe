@@ -13,6 +13,6 @@ namespace IA
 	public:
 		IAComponent(GameObjects::Tank* tank) { _tank = tank; };
 		GameObjects::Tank* getTank() const { return _tank; };
-		void update();
+		virtual void update() = 0;
 	};
 }

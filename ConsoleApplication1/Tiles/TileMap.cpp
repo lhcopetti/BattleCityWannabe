@@ -5,13 +5,12 @@
 #include <string>
 #include "BrickTile.h"
 #include "GroundTile.h"
+#include "IndestructibleTile.h"
 
 
 Tiles::TileMap::TileMap(String fileName)
 {
 	std::ifstream inputFile(fileName);
-
-	std::vector<String> map;
 
 	_width = -1;
 	String cLine;
@@ -34,10 +33,14 @@ Tiles::TileMap::TileMap(String fileName)
 	for (int i = 0; i < _height; i++)
 		for (int j = 0; j < _width; j++)
 		{
-			if (map[i][j] == '0')
-				_tiles[i][j] = new GroundTile(i, j);
-			else /* if (map[i][j] == '1') */
+			int mapValue = map[i][j] - '0';
+
+			if (mapValue == TILE_BRICK)
 				_tiles[i][j] = new BrickTile(i, j);
+			else if (mapValue == TILE_INDESTRUCTIBLE)
+				_tiles[i][j] = new IndestructibleTile(i, j);
+			else /* if (mapValue == TILE_GROUND) */
+				_tiles[i][j] = new GroundTile(i, j);
 		}
 }
 

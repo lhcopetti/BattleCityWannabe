@@ -13,6 +13,7 @@ World::World(Tiles::TileMap* tileMap)
 {
 	_tileMap = tileMap;
 
+	extractGameObjects(*_tileMap);
 
 	_startTime = std::chrono::steady_clock::now();
 
@@ -170,4 +171,28 @@ int World::getRemainingTanks()
 			counter++;
 	}
 	return counter;
+}
+
+void World::extractGameObjects(Tiles::TileMap& tileMap)
+{
+	std::vector<String> map = tileMap.rawMap();
+
+	for (int i = 0; i < tileMap.height(); i++)
+		for (int j = 0; j < tileMap.width(); j++)
+		{
+			int mapValue = map[i][j] - '0';
+
+			int x = j * TILE_WIDTH;
+			int y = i * TILE_HEIGHT;
+
+			if (mapValue == Tiles::TileMap::GAMEOBJECT_PLAYER_TANK)
+			{
+				_playerTank = new GameObjects::Tank(this, x, y);
+				addGameObject(_playerTank);
+			}
+			else if (mapValue == Tiles::TileMap::GAMEOBJECT_ENEMY_TANK)
+				addGameObject(new GameObjects::Tank(this, x, y));
+//			else if (mapValue == Tiles::TileMap::GAMEOBJECT_OBJECTIVE)
+
+		}
 }

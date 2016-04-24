@@ -23,11 +23,15 @@ private:
 
 	std::vector<String> _footer;
 
+	GameObjects::Tank* _playerTank;
+
 	void clear();
 
 	int getElapsedSeconds();
 	int getRemainingTanks();
 	void updateFooter();
+
+	void extractGameObjects(Tiles::TileMap& tileMap);
 
 	std::chrono::steady_clock::time_point _startTime;
 
@@ -49,6 +53,8 @@ public:
 	void addGameObject(GameObjects::GameObject* go);
 	void addGameObject(GameObjects::GameObject* gO, Notify::GameObjectDied* gDied);
 	void addKeyListener(GameObjects::GameObject* go);
+
+	GameObjects::Tank* getPlayerTank() const { return _playerTank; };
 
 	bool isValidCoordinate(int x, int y);
 	Tiles::Tile* getTileFromCoordinate(int x, int y);

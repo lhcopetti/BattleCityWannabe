@@ -4,13 +4,14 @@
 
 using namespace Tiles;
 
-Tile::Tile(int x, int y, bool walkable, bool isWall)
+Tile::Tile(int x, int y, bool walkable, bool isWall, bool isDestructible)
 {
 	_x = x;
 	_y = y;
 	_walkable = walkable;
 	_destroyed = false;
 	_isWall = isWall;
+	_isDestructible = isDestructible;
 }
 
 int Tile::getX() const

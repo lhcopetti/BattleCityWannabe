@@ -157,6 +157,7 @@
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Tank.cpp" />
     <ClCompile Include="Tiles\GroundTile.cpp" />
+    <ClCompile Include="Tiles\IndestructibleTile.cpp" />
     <ClCompile Include="Tiles\Tile.cpp" />
     <ClCompile Include="Tiles\TileParser.cpp" />
     <ClCompile Include="Tiles\TileMap.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="GameObjects\Tank.h" />
     <ClInclude Include="Tiles\GroundTile.h" />
     <ClInclude Include="Tiles\Header.h" />
+    <ClInclude Include="Tiles\IndestructibleTile.h" />
     <ClInclude Include="Tiles\Tile.h" />
     <ClInclude Include="Tiles\TileParser.h" />
     <ClInclude Include="Tiles\TileMap.h" />

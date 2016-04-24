@@ -27,16 +27,10 @@ int main()
 	World gameWorld(&tileMap);
 	Collision::CollisionDetector collisionDetector(&gameWorld);
 
-	Tank* playerTank = new Tank(&gameWorld, 50, 10);
-	Tank* iaTank = new Tank(&gameWorld, 10, 50);
-
-	gameWorld.addGameObject(playerTank);
-	gameWorld.addGameObject(iaTank);
-
-	IA::PrettyDumbIA iA(iaTank);
-
 	KeyboardManager keyManager;
 	keyManager.startManager();
+
+	Tank* playerTank = gameWorld.getPlayerTank();
 
 	bool toggle = false;
 
@@ -45,42 +39,40 @@ int main()
 
 		UnitCommand::UnitCommand* command = NULL;
 
-		if ((toggle ^= 1))
-			switch (keyManager.getPressedKey())
-			{
-			case KeyboardManager::Keys::KEY_UP_ARROW:
-				command = new UnitCommand::GoUpCommand(playerTank);
-				break;
-			case KeyboardManager::Keys::KEY_LEFT_ARROW:
-				command = new UnitCommand::GoLeftCommand(playerTank);
-				break;
-			case KeyboardManager::Keys::KEY_RIGHT_ARROW:
-				command = new UnitCommand::GoRightCommand(playerTank);
-				break;
-			case KeyboardManager::Keys::KEY_DOWN_ARROW:
-				command = new UnitCommand::GoDownCommand(playerTank);
-				break;
-			case KeyboardManager::Keys::KEY_SPACE:
-				command = new UnitCommand::ShootCommand(playerTank);
-				break;
-			case KeyboardManager::Keys::KEY_ESC:
-				exit = true;
-				break;
-			default:
-				break;
-			}
+		switch (keyManager.getPressedKey())
+		{
+		case KeyboardManager::Keys::KEY_UP_ARROW:
+			command = new UnitCommand::GoUpCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_LEFT_ARROW:
+			command = new UnitCommand::GoLeftCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_RIGHT_ARROW:
+			command = new UnitCommand::GoRightCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_DOWN_ARROW:
+			command = new UnitCommand::GoDownCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_SPACE:
+			command = new UnitCommand::ShootCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_ESC:
+			exit = true;
+			break;
+		default:
+			break;
+		}
 
 		if (exit)
 			break;
 
 		if (command)
 		{
-			command->execute();
+			if ((toggle ^= 1))
+				command->execute();
 			delete command;
 			command = nullptr;
 		}
-
-		iA.update();
 
 		gameWorld.update();
 		gameWorld.paint();

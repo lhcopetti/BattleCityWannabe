@@ -12,7 +12,8 @@ namespace GameObjects
 	enum GameObjectType
 	{
 		TANK,
-		MISSILE
+		MISSILE,
+		EAGLE
 	};
 
 

@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="ConsoleTest.cpp" />
+    <ClCompile Include="GameObjects\Eagle.cpp" />
     <ClCompile Include="GameObjects\Missile.cpp" />
     <ClCompile Include="IA\IAComponent.cpp" />
     <ClCompile Include="IA\PrettyDumbIA.cpp" />
@@ -171,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="Collision\CollisionDetector.h" />
+    <ClInclude Include="GameObjects\Eagle.h" />
     <ClInclude Include="GameObjects\Missile.h" />
     <ClInclude Include="IA\IAComponent.h" />
     <ClInclude Include="IA\PrettyDumbIA.h" />

@@ -3,6 +3,7 @@
 #include "Console\Console.h"
 #include "Tiles\TileMap.h"
 #include "Tiles\Tile.h"
+#include "GameObjects\Eagle.h"
 
 #include <sstream>
 #include <cassert>
@@ -192,7 +193,7 @@ void World::extractGameObjects(Tiles::TileMap& tileMap)
 			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_ENEMY_TANK)
 				addGameObject(new GameObjects::Tank(this, x, y));
-//			else if (mapValue == Tiles::TileMap::GAMEOBJECT_OBJECTIVE)
-
+			else if (mapValue == Tiles::TileMap::GAMEOBJECT_OBJECTIVE)
+				addGameObject(new GameObjects::Eagle(this, x, y));
 		}
 }

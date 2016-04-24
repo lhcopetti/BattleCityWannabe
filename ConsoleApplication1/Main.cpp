@@ -16,7 +16,6 @@
 
 #include "World.h"
 #include "AStar.h"
-//#include "Tiles\TileParser.h"
 
 using namespace std;
 
@@ -39,42 +38,37 @@ int main()
 	KeyboardManager keyManager;
 	keyManager.startManager();
 
+	bool toggle = false;
+
 	while (true)
 	{
-		//if (keyManager.getPressedKey)
-		//{
-			//int keyPressed = _getch();
-			////cout << "Key Pressed: " << keyPressed << endl;
-			//if (224 == keyPressed)
-			//	keyPressed = _getch();
-
-			////cout << "Key Pressed: " << keyPressed << endl;
 
 		UnitCommand::UnitCommand* command = NULL;
 
-		switch (keyManager.getPressedKey())
-		{
-		case KeyboardManager::Keys::KEY_UP_ARROW:
-			command = new UnitCommand::GoUpCommand(playerTank);
-			break;
-		case KeyboardManager::Keys::KEY_LEFT_ARROW:
-			command = new UnitCommand::GoLeftCommand(playerTank);
-			break;
-		case KeyboardManager::Keys::KEY_RIGHT_ARROW:
-			command = new UnitCommand::GoRightCommand(playerTank);
-			break;
-		case KeyboardManager::Keys::KEY_DOWN_ARROW:
-			command = new UnitCommand::GoDownCommand(playerTank);
-			break;
-		case KeyboardManager::Keys::KEY_SPACE:
-			command = new UnitCommand::ShootCommand(playerTank);
-			break;
-		case KeyboardManager::Keys::KEY_ESC:
-			exit = true;
-			break;
-		default:
-			break;
-		}
+		if ((toggle ^= 1))
+			switch (keyManager.getPressedKey())
+			{
+			case KeyboardManager::Keys::KEY_UP_ARROW:
+				command = new UnitCommand::GoUpCommand(playerTank);
+				break;
+			case KeyboardManager::Keys::KEY_LEFT_ARROW:
+				command = new UnitCommand::GoLeftCommand(playerTank);
+				break;
+			case KeyboardManager::Keys::KEY_RIGHT_ARROW:
+				command = new UnitCommand::GoRightCommand(playerTank);
+				break;
+			case KeyboardManager::Keys::KEY_DOWN_ARROW:
+				command = new UnitCommand::GoDownCommand(playerTank);
+				break;
+			case KeyboardManager::Keys::KEY_SPACE:
+				command = new UnitCommand::ShootCommand(playerTank);
+				break;
+			case KeyboardManager::Keys::KEY_ESC:
+				exit = true;
+				break;
+			default:
+				break;
+			}
 
 		if (exit)
 			break;

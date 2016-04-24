@@ -157,8 +157,6 @@ int World::getElapsedSeconds()
 	std::chrono::duration<float> fSec = end - _startTime;
 
 	return fSec.count();
-	//std::chrono::duration<double> d= std::chrono::duration_cast<std::chrono::duration<int>>(end - _startTime);
-	//return d.count;
 }
 
 int World::getRemainingTanks()

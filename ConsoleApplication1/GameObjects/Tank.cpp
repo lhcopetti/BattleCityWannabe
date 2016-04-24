@@ -61,7 +61,27 @@ bool Tank::shoot()
 		/* Cannot shoot until the missile is destroyed */
 		return false;
 
-	missile = new Missile(world, xPos, yPos, cDirection);
+	int missileX = xPos;
+	int missileY = yPos;
+
+	switch (cDirection)
+	{
+	case UP:
+		missileX++;
+		break;
+	case LEFT:
+		missileY++;
+		break;
+	case DOWN:
+		missileX++;
+		missileY += TANK_HEIGHT - 1;
+		break;
+	case RIGHT:
+		missileY++;
+		missileX += TANK_WIDTH - 1;
+	}
+
+	missile = new Missile(world, missileX, missileY, cDirection);
 	world->addGameObject(missile, this);
 	std::cout << "Tank is shooting crazy" << std::endl;
 	return true;

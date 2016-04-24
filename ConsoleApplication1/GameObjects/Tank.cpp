@@ -138,8 +138,21 @@ bool Tank::isTileWalkable(int x, int y) const
 
 std::vector<String> Tank::getSpriteDirection() const
 {
-	std::vector<String> vec{ "@@", "@@" };
-	return vec;
+	switch (cDirection)
+	{
+	case UP:
+		return { "\xC9\xBA\xBB", "\xC7\xCD\xB6", "@@@" };
+		break;
+	case DOWN:
+		return{  "@@@", "\xC7\xCD\xB6", "\xC8\xBA\xBC"};
+		break;
+	case LEFT:
+		return{ "\xC9\x41@", "\xCD\xBA@", "\xC8\x41@" };
+		break;
+	case RIGHT:
+		return{ "@A\xBB", "@\xBA\xCD", "@A\xBC"};
+		break;
+	}
 }
 
 void Tank::update()

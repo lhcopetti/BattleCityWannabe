@@ -6,8 +6,8 @@
 
 class World;
 
-#define TANK_HEIGHT 2
-#define TANK_WIDTH 2
+#define TANK_HEIGHT 3
+#define TANK_WIDTH 3
 
 namespace GameObjects
 {

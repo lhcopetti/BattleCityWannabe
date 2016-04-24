@@ -4,13 +4,19 @@
 #include "Tiles\TileMap.h"
 #include "Tiles\Tile.h"
 
+#include <sstream>
 #include <cassert>
 
-
+using Time = std::chrono::high_resolution_clock;
 
 World::World(Tiles::TileMap* tileMap)
 {
 	_tileMap = tileMap;
+
+
+	_startTime = std::chrono::steady_clock::now();
+
+
 	clear();
 }
 
@@ -68,8 +74,24 @@ void World::paint()
 	}
 
 	for (int i = 0; i < getHeight(); i++)
-		mostrar(0, i, BACKGROUND_WHITE | FOREGROUND_BLUE, (char*)charWorld[i].c_str());
+		mostrar(0, i, BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)charWorld[i].c_str());
 
+	updateFooter();
+
+	for (int i = 0; i < _footer.size(); i++)
+		mostrar(0, getHeight() + i, BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)_footer[i].c_str());
+}
+
+void World::updateFooter()
+{
+	_footer.clear();
+	std::stringstream stream;
+	stream << "Running Time: " << getElapsedSeconds();
+	_footer.push_back(stream.str());
+
+	std::stringstream sstream;
+	sstream << "Tanks Remaining: " << getRemainingTanks();
+	_footer.push_back(sstream.str());
 }
 
 void World::paintAt(World& world, std::vector<String> toPaint, int x, int y)
@@ -126,4 +148,28 @@ bool World::isValidCoordinate(int x, int y)
 Tiles::Tile* World::getTileFromCoordinate(int x, int y)
 {
 	return _tileMap->getTiles()[(x / TILE_WIDTH)][(y / TILE_HEIGHT)];
+}
+
+int World::getElapsedSeconds()
+{
+	Time::time_point end = Time::now();
+
+	std::chrono::duration<float> fSec = end - _startTime;
+
+	return fSec.count();
+	//std::chrono::duration<double> d= std::chrono::duration_cast<std::chrono::duration<int>>(end - _startTime);
+	//return d.count;
+}
+
+int World::getRemainingTanks()
+{
+	/* Account for the player Tank */
+	int counter = -1;
+
+	for (std::map<GameObjects::GameObject*, Notify::GameObjectDied*>::iterator iter = _notifyObjects.begin(); iter != _notifyObjects.end(); ++iter)
+	{
+		if (iter->first->getType() == GameObjects::TANK)
+			counter++;
+	}
+	return counter;
 }

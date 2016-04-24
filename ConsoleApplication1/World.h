@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <chrono>
 
 #include "BattleCityClone.h"
 #include "GameObjects\GameObject.h"
@@ -20,7 +21,15 @@ private:
 	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> _notifyObjects;
 	Collision::CollisionDetector* _collisionDetector;
 
+	std::vector<String> _footer;
+
 	void clear();
+
+	int getElapsedSeconds();
+	int getRemainingTanks();
+	void updateFooter();
+
+	std::chrono::steady_clock::time_point _startTime;
 
 public:
 

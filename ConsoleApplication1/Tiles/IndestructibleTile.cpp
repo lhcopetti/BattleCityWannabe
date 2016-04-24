@@ -10,10 +10,10 @@ IndestructibleTile::IndestructibleTile(int x, int y) : Tile(x, y, false, true, f
 void IndestructibleTile::paint(World* world) const
 {
 	std::vector<String> test
-	{ "\xDB\xDB\xDB\xDB",
-		"\xDB\xDB\xDB\xDB",
-		"\xDB\xDB\xDB\xDB",
-		"\xDB\xDB\xDB\xDB" };
+	{ "\xC9\xCB\xCB\xBB",
+		"\xCC\xCE\xCE\xB9",
+		"\xCC\xCE\xCE\xB9",
+		"\xC8\xCA\xCA\xBC" };
 
 	World::paintAt(*world, test, getXScaled(), getYScaled());
 }

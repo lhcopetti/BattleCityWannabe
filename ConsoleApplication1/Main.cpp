@@ -77,7 +77,7 @@ int main()
 		gameWorld.update();
 		gameWorld.paint();
 
-		Sleep(17);
+		Sleep(10);
 	}
 
 	keyManager.stopManager();

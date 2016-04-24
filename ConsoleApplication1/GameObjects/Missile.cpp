@@ -91,6 +91,7 @@ void Missile::onTile(Tiles::Tile* tile)
 	if (tile->isWall())
 	{
 		_alive = false;
-		tile->destroy();
+		if (tile->isDestructible())
+			tile->destroy();
 	}
 }

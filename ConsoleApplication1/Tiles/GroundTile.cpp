@@ -13,10 +13,10 @@ GroundTile::GroundTile(int x, int y) : Tile(x, y, true)
 void GroundTile::paint(World* world) const
 {
 	std::vector<String> test
-						   {"____", 
-							"____",
-							"____",
-							"____"};
+						   {"....", 
+							"....",
+							"....",
+							"...."};
 
 	World::paintAt(*world, test, getXScaled(), getYScaled());
 

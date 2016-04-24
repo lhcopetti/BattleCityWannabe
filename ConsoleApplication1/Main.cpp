@@ -22,6 +22,8 @@ using namespace std;
 
 int main()
 {
+	bool exit = false;
+
 	Tiles::TileMap tileMap("defaultMap.txt");
 	World gameWorld(&tileMap);
 	Collision::CollisionDetector collisionDetector(&gameWorld);
@@ -66,9 +68,17 @@ int main()
 			break;
 		case KeyboardManager::Keys::KEY_SPACE:
 			command = new UnitCommand::ShootCommand(playerTank);
+			break;
+		case KeyboardManager::Keys::KEY_ESC:
+			exit = true;
+			break;
 		default:
 			break;
 		}
+
+		if (exit)
+			break;
+
 		if (command)
 		{
 			command->execute();
@@ -84,8 +94,7 @@ int main()
 		Sleep(17);
 	}
 
+	keyManager.stopManager();
 
-	String ttt;
-	cin >> ttt;
 	return 0;
 }

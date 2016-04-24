@@ -21,7 +21,7 @@ KeyboardManager::KeyboardManager()
 	KeyboardManager::keyMapping[KeyboardManager::Keys::KEY_LEFT_ARROW] = 75;
 	KeyboardManager::keyMapping[KeyboardManager::Keys::KEY_RIGHT_ARROW] = 77;
 	KeyboardManager::keyMapping[KeyboardManager::Keys::KEY_SPACE] = 57;
-	KeyboardManager::keyMapping[KeyboardManager::Keys::KEY_ESC] = 0;
+	KeyboardManager::keyMapping[KeyboardManager::Keys::KEY_ESC] = 1;
 }
 
 void KeyboardManager::startManager()

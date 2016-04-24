@@ -150,6 +150,8 @@
     <ClCompile Include="GameObjects\Missile.cpp" />
     <ClCompile Include="IA\IAComponent.cpp" />
     <ClCompile Include="IA\PrettyDumbIA.cpp" />
+    <ClCompile Include="KeyboardManager.cpp" />
+    <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="Tiles\BlownUpTile.cpp" />
     <ClCompile Include="Tiles\BrickTile.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
@@ -171,6 +173,7 @@
     <ClInclude Include="GameObjects\Missile.h" />
     <ClInclude Include="IA\IAComponent.h" />
     <ClInclude Include="IA\PrettyDumbIA.h" />
+    <ClInclude Include="KeyboardManager.h" />
     <ClInclude Include="Notify\GameObjectDied.h" />
     <ClInclude Include="Tiles\BlownUpTile.h" />
     <ClInclude Include="Tiles\BrickTile.h" />

@@ -5,6 +5,9 @@
 
 class World;
 
+#define MISSILE_HEIGHT 1
+#define MISSILE_WIDTH 1
+
 namespace GameObjects
 {
 	class Missile : public GameObject
@@ -29,5 +32,10 @@ namespace GameObjects
 
 		void update();
 
+		virtual void collide(Collidable* collidable);
+
+		virtual void collideWith(GameObjects::Eagle* eagle);
+		virtual void collideWith(GameObjects::Tank* tank);
+		virtual void collideWith(GameObjects::Missile* missile);
 	};
 }

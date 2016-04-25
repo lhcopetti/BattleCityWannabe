@@ -3,12 +3,14 @@
 
 using namespace GameObjects;
 
-GameObject::GameObject(World* w, int x, int y, GameObjectType type)
+GameObject::GameObject(World* w, int x, int y, GameObjectType type, int height, int width)
 {
 	this->world = w;
 	this->xPos = x;
 	this->yPos = y;
 	this->_type = type;
+	_height = height;
+	_width = width;
 }
 
 int GameObject::getX() const

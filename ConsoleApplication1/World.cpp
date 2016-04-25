@@ -140,6 +140,11 @@ void World::update()
 			}
 		}
 
+	//for (auto iter = _notifyObjects.begin(); iter != _notifyObjects.end(); ++iter)
+	//{
+	//	iter->first->
+	//}
+
 }
 
 bool World::isValidCoordinate(int x, int y)

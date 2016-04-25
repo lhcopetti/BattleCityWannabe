@@ -41,5 +41,12 @@ namespace GameObjects
 		bool moveRight();
 
 		void onGameObjectDeath(GameObjects::GameObject* gO);
+
+
+		virtual void collide(Collidable* collidable);
+
+		virtual void collideWith(GameObjects::Eagle* eagle);
+		virtual void collideWith(GameObjects::Tank* tank);
+		virtual void collideWith(GameObjects::Missile* missile);
 	};
 }

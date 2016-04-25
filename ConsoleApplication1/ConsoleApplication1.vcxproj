@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision\Collidable.cpp" />
     <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="ConsoleTest.cpp" />
     <ClCompile Include="GameObjects\Eagle.cpp" />
@@ -171,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h" />
+    <ClInclude Include="Collision\Collidable.h" />
     <ClInclude Include="Collision\CollisionDetector.h" />
     <ClInclude Include="GameObjects\Eagle.h" />
     <ClInclude Include="GameObjects\Missile.h" />

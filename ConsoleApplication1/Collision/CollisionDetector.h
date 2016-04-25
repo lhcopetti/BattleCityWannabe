@@ -18,5 +18,7 @@ namespace Collision
 	public:
 		CollisionDetector(World* world);
 		void update();
+
+		static void checkCollision(GameObjects::GameObject* gO, GameObjects::GameObject* other);
 	};
 }

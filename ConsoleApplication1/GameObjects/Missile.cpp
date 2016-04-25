@@ -5,7 +5,7 @@
 using namespace GameObjects;
 
 
-Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(world, x, y, GameObjectType::MISSILE)
+Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(world, x, y, GameObjectType::MISSILE, MISSILE_HEIGHT, MISSILE_WIDTH)
 {
 	cDirection = direction;
 
@@ -94,4 +94,25 @@ void Missile::onTile(Tiles::Tile* tile)
 		if (tile->isDestructible())
 			tile->destroy();
 	}
+}
+
+void Missile::collide(Collidable* collidable)
+{
+	collidable->collideWith((Missile*)this);
+}
+
+void Missile::collideWith(GameObjects::Eagle* eagle)
+{
+	_alive = false;
+}
+
+
+void Missile::collideWith(GameObjects::Tank* tank)
+{
+	_alive = false;
+}
+
+void Missile::collideWith(GameObjects::Missile* missile)
+{
+	_alive = false;
 }

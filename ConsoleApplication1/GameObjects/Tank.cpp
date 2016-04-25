@@ -37,7 +37,7 @@
 
 using namespace GameObjects;
 
-Tank::Tank(World* world, int x, int y) : GameObject(world, x, y, GameObjectType::TANK)
+Tank::Tank(World* world, int x, int y) : GameObject(world, x, y, GameObjectType::TANK, TANK_HEIGHT, TANK_WIDTH)
 {
 	cDirection = UP;
 	missile = NULL;
@@ -184,4 +184,23 @@ void Tank::onGameObjectDeath(GameObjects::GameObject* gO)
 	delete missile;
 	missile = NULL;
 	std::cout << "Shots fired. It was not pretty!!!" << std::endl;
+}
+
+void Tank::collide(Collidable* collidable)
+{
+	collidable->collideWith(this);
+}
+
+void Tank::collideWith(GameObjects::Eagle* eagle)
+{
+
+}
+void Tank::collideWith(GameObjects::Tank* tank)
+{
+
+}
+
+void Tank::collideWith(GameObjects::Missile* missile)
+{
+		_alive = false;
 }

@@ -25,7 +25,11 @@ private:
 
 	std::vector<String> _footer;
 
+	bool _playerWon;
+	bool _gameIsFinished;
+
 	GameObjects::Tank* _playerTank;
+	GameObjects::Eagle* _gameObjective;
 
 	void clear();
 
@@ -57,6 +61,10 @@ public:
 	void addKeyListener(GameObjects::GameObject* go);
 
 	GameObjects::Tank* getPlayerTank() const { return _playerTank; };
+	GameObjects::Eagle* getGameObjective() const { return _gameObjective; };
+
+	bool getGameIsFinished() const { return _gameIsFinished; };
+	bool getPlayerWon() const { return _playerWon; };
 
 	bool isValidCoordinate(int x, int y);
 	Tiles::Tile* getTileFromCoordinate(int x, int y);

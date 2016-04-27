@@ -14,11 +14,11 @@ using Time = std::chrono::high_resolution_clock;
 World::World(Tiles::TileMap* tileMap)
 {
 	_tileMap = tileMap;
+	_gameIsFinished = false;
 
 	extractGameObjects(*_tileMap);
 
 	_startTime = std::chrono::steady_clock::now();
-
 
 	clear();
 }
@@ -148,11 +148,17 @@ void World::update()
 			}
 		}
 
-	//for (auto iter = _notifyObjects.begin(); iter != _notifyObjects.end(); ++iter)
-	//{
-	//	iter->first->
-	//}
+	if (!_gameObjective->isAlive())
+	{
+		_playerWon = false;
+		_gameIsFinished = true;
+	}
 
+	if (getRemainingTanks() == 0)
+	{
+		_playerWon = true;
+		_gameIsFinished = true;
+	}
 }
 
 bool World::isValidCoordinate(int x, int y)
@@ -211,6 +217,9 @@ void World::extractGameObjects(Tiles::TileMap& tileMap)
 				addGameObject(enemyTank);
 			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_OBJECTIVE)
-				addGameObject(new GameObjects::Eagle(this, x, y));
+			{
+				_gameObjective = new GameObjects::Eagle(this, x, y);
+				addGameObject(_gameObjective);
+			}
 		}
 }

@@ -19,6 +19,12 @@
 
 using namespace std;
 
+void showEndGame(World& world)
+{
+	clrscr(BACKGROUND_BLUE | FOREGROUND_GREEN);
+	mostrar(0, 0, FOREGROUND_BLUE | FOREGROUND_RED, "Voce venceu o jogo. Parabens");
+}
+
 int main()
 {
 	bool exit = false;
@@ -68,7 +74,7 @@ int main()
 
 		if (command)
 		{
-			if ((toggle ^= 1))
+//			if ((toggle ^= 1))
 				command->execute();
 			delete command;
 			command = nullptr;
@@ -77,7 +83,12 @@ int main()
 		gameWorld.update();
 		gameWorld.paint();
 
-		Sleep(10);
+		if (gameWorld.getGameIsFinished())
+		{
+			showEndGame(gameWorld);
+			return 0;
+		}
+		//Sleep(10);
 	}
 
 	keyManager.stopManager();

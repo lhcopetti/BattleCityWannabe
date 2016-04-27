@@ -30,19 +30,25 @@ private:
 	GridCell* _start;
 	GridCell* _end;
 
-	struct InversePriority
+	struct UniqueCoord
 	{
 		bool operator()(const GridCell* left, const GridCell* right) const
 		{
-			return left->cost() > right->cost();
+			if (left->x() < right->x()) return true;
+			if (left->x() > right->x()) return false;
+			// x == x
+
+			if (left->y() < right->y()) return true;
+			if (left->y() > right->y()) return false;
+			// y == y
+
+			return false;
+//			return left->x() < right->x() || left->y() < right->y();
 		}
 	};
 
-
-
-
-	std::priority_queue<GridCell*, std::vector<GridCell*>, InversePriority> _openList;
-//	std::set<GridCell*>
+	//std::priority_queue<GridCell*, std::vector<GridCell*>, InversePriority> _openList;
+	std::set<GridCell*, UniqueCoord> _openList;
 	std::vector<GridCell*> _closedList;
 
 	void doAStar(int startX, int startY, int endX, int endY);

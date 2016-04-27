@@ -14,11 +14,14 @@ void deletePointer(GridCell* ptr)
 
 AStar::~AStar()
 {
-	while (!_openList.empty())
-	{
-		GridCell* g = _openList.top();
-		delete g;
-		_openList.pop();
+	//while (!_openList.empty())
+	//{
+	//	GridCell* g = _openList.top();
+	//	delete g;
+	//	_openList.pop();
+	//}
+	for (auto i = _openList.begin(); i != _openList.end(); ++i) {
+		delete *i;
 	}
 
 	std::for_each(_closedList.begin(), _closedList.end(), deletePointer);
@@ -49,9 +52,27 @@ AStar::AStar(int** grid, int height, int width, int startX, int startY, int endX
 	doAStar(startX, startY, endX, endY);
 }
 
+bool lowestCost(const GridCell* l, const GridCell* r)
+{
+	return l->cost() < r->cost();
+}
+
+class FindInSet
+{
+	int _x;
+	int _y;
+
+public:
+	FindInSet(int x, int y) { _x = x; _y = y; };
+
+	bool operator()(const GridCell* other)
+	{
+		return other->x() == _x && other->y() == _y;
+	}
+};
+
 void AStar::doAStar(int startX, int startY, int endX, int endY)
 {
-
 	if (startX == endX && endY == startY)
 	{
 		_solved = true;
@@ -61,13 +82,15 @@ void AStar::doAStar(int startX, int startY, int endX, int endY)
 	_start = new GridCell(startX, startY);
 	_end = new GridCell(endX, endY);
 
-	_openList.push(_start);
+	_openList.insert(_start);
 	_onOpenList[startX][startY] = true;
 
 	while (!_openList.empty())
 	{
-		GridCell* cCell = _openList.top();
-		_openList.pop();
+		auto lowCost = std::min_element(_openList.begin(), _openList.end(), lowestCost);
+		GridCell* cCell = (*lowCost);
+		_openList.erase(lowCost);
+//		_openList.pop();
 		_computation++;
 
 		if (*cCell == *_end)
@@ -75,7 +98,6 @@ void AStar::doAStar(int startX, int startY, int endX, int endY)
 			delete _end;
 			_end = cCell;
 			_solved = true;
-		//	std::cout << "Found a solution" << std::endl;
 			return;
 		}
 
@@ -90,14 +112,39 @@ void AStar::doAStar(int startX, int startY, int endX, int endY)
 				continue;
 			}
 
+			neighbour->parent(cCell);
+			neighbour->heuristic(computeHeuristic(neighbour, _end));
+			neighbour->movementCost(cCell->movementCost() + MOVEMENT_COST);
+
 			if (!_onOpenList[neighbour->x()][neighbour->y()])
 			{
-				neighbour->parent(cCell);
-				neighbour->heuristic(computeHeuristic(neighbour, _end));
-				neighbour->movementCost(cCell->movementCost() + MOVEMENT_COST);
-
-				_openList.push(neighbour);
+				_openList.insert(neighbour);
 				_onOpenList[neighbour->x()][neighbour->y()] = true;
+			}
+			else
+			{
+				FindInSet findInSet(neighbour->x(), neighbour->y());
+				auto myFindingIter = std::find_if(_openList.begin(), _openList.end(), findInSet);
+				GridCell* cellInOpenList = (*myFindingIter);
+
+				if (neighbour->cost() < cellInOpenList->cost())
+				{
+					_openList.erase(myFindingIter);
+					_openList.insert(neighbour);
+
+					delete cellInOpenList;
+				}
+				else
+					delete neighbour;
+				//FindInSet findInSet(neighbour->x(), neighbour->y());
+				//auto myFindingIter = std::find_if(_openList.begin(), _openList.end(), findInSet);
+				//if ((*myFindingIter)->cost() < neighbour->cost())
+				//{
+				//	cCell->movementCost((*myFindingIter)->movementCost());
+				//	cCell->heuristic((*myFindingIter)->heuristic());
+				//	cCell->parent((*myFindingIter)->parent());
+				//}
+
 			}
 		}
 
@@ -106,6 +153,7 @@ void AStar::doAStar(int startX, int startY, int endX, int endY)
 
 	_solved = false;
 }
+
 
 bool AStar::getSolution(std::vector<GridCell*> &vector) const
 {

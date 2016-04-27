@@ -19,6 +19,8 @@ namespace IA {
 
 		GridCell* computeStep(int startX, int startY, int endX, int endY);
 
+		static bool isTankAllowedToWalk(World& world, int i, int j);
+
 		static int** translateWorld(World& world, int startX, int startY, int endX, int endY);
 	};
 }

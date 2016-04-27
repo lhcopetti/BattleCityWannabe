@@ -35,20 +35,22 @@ int** IA::IAAdapter::translateWorld(World& world, int startX, int startY, int en
 
 	for (int i = 0; i < world.getHeight(); i++)
 		for (int j = 0; j < world.getWidth(); j++)
-		{
-			//if (i == startX && j == startY)
-			//	grid[i][j] = START_COORD;
-			//else if (i == endX && j == endY)
-			//	grid[i][j] = END_COORD;
-			//else
-			//{
-				Tiles::Tile* t = world.getTileFromCoordinate(i, j);
-				if (t->isWalkable())
-					grid[i][j] = EMPTY_COORD;
-				else
-					grid[i][j] = CLOSED_COORD;
-//			}
-		}
+			grid[i][j] = isTankAllowedToWalk(world, i, j) ? EMPTY_COORD : CLOSED_COORD;
 
 	return grid;
+}
+
+bool IA::IAAdapter::isTankAllowedToWalk(World& world, int i, int j)
+{
+	for (int tankI = i; tankI < i + TANK_HEIGHT && tankI < world.getHeight(); tankI++)
+	{
+		for (int tankJ = j; tankJ < j + TANK_WIDTH && tankJ < world.getWidth(); tankJ++)
+		{
+			Tiles::Tile* t = world.getTileFromCoordinate(tankI, tankJ);
+			if (t->isWall() || !t->isWalkable())
+				return false;
+		}
+	}
+
+	return true;
 }

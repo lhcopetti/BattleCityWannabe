@@ -27,12 +27,15 @@ public:
 	GridCell* parent() { return _parent; };
 
 	int cost() const { return _heuristic + _movementCost; };
-	//void cost(int cost) { _cost = cost; };
+
 	void heuristic(int h) { _heuristic = h; };
 	void movementCost(int g) { _movementCost = g; };
 
 	int movementCost() { return _movementCost; };
 	int heuristic() { return _heuristic; };
+
+	//void movementCost(int mCost) { _movementCost = mCost; };
+	//void heuristic(int h) { _heuristic = h; };
 
 	bool isEqual(GridCell* g) const;
 

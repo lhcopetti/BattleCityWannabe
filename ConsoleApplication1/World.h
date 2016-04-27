@@ -10,7 +10,7 @@
 #include "Tiles\TileMap.h"
 #include "Notify\GameObjectDied.h"
 #include "Collision\CollisionDetector.h"
-
+#include "IA\IAComponent.h"
 
 class World
 {
@@ -20,6 +20,8 @@ private:
 
 	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> _notifyObjects;
 	Collision::CollisionDetector* _collisionDetector;
+
+	std::vector<IA::IAComponent*> _ias;
 
 	std::vector<String> _footer;
 

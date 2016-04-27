@@ -93,6 +93,9 @@
     <ClCompile Include="Collision\Collidable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IA\IAAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h">
@@ -171,6 +174,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Collision\Collidable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IA\IAAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

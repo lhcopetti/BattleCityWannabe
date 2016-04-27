@@ -2,6 +2,8 @@
 
 #include "IA\IAComponent.h"
 
+class World;
+
 namespace IA
 {
 	class PrettyDumbIA : public IAComponent
@@ -22,7 +24,7 @@ namespace IA
 		Direction cDirection;
 
 	public:
-		PrettyDumbIA(GameObjects::Tank* tank);
+		PrettyDumbIA(World* world, GameObjects::Tank* tank);
 		void update();
 	};
 }

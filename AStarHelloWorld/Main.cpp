@@ -69,7 +69,7 @@ int mainNot()
 
 	for (int i = 0; i < 10000; i++)
 	{
-		AStar aStart(matrix, height, width);
+		//AStar aStart(matrix, height, width);
 
 	//	std::vector<GridCell*> vector;
 /*		if (aStart.getSolution(vector))

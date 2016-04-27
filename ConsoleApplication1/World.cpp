@@ -1,9 +1,10 @@
 #include "World.h"
-#include <vector>
 #include "Console\Console.h"
 #include "Tiles\TileMap.h"
 #include "Tiles\Tile.h"
 #include "GameObjects\Eagle.h"
+#include "IA\PrettyDumbIA.h"
+#include "IA\IAComponent.h"
 
 #include <sstream>
 #include <cassert>
@@ -76,12 +77,12 @@ void World::paint()
 	}
 
 	for (int i = 0; i < getHeight(); i++)
-		mostrar(0, i, BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)charWorld[i].c_str());
+		mostrar(0, i, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)charWorld[i].c_str());
 
 	updateFooter();
 
 	for (int i = 0; i < _footer.size(); i++)
-		mostrar(0, getHeight() + i, BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)_footer[i].c_str());
+		mostrar(0, getHeight() + i,  FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)_footer[i].c_str());
 }
 
 void World::updateFooter()
@@ -109,6 +110,13 @@ void World::paintAt(World& world, std::vector<String> toPaint, int x, int y)
 
 void World::update()
 {
+	for (std::vector<IA::IAComponent*>::iterator iter = _ias.begin(); iter != _ias.end(); iter++)
+	{
+		IA::IAComponent* p = *iter;
+		p->update();
+	}
+	//_ias[0]->update();
+
 	for (auto iter = _notifyObjects.cbegin(); iter != _notifyObjects.cend();)
 	{
 		GameObjects::GameObject* gO = iter->first;
@@ -197,7 +205,11 @@ void World::extractGameObjects(Tiles::TileMap& tileMap)
 				addGameObject(_playerTank);
 			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_ENEMY_TANK)
-				addGameObject(new GameObjects::Tank(this, x, y));
+			{
+				GameObjects::Tank* enemyTank = new GameObjects::Tank(this, x, y);
+				_ias.push_back(new IA::PrettyDumbIA(this, enemyTank));
+				addGameObject(enemyTank);
+			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_OBJECTIVE)
 				addGameObject(new GameObjects::Eagle(this, x, y));
 		}

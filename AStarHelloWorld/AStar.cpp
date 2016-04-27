@@ -23,38 +23,52 @@ AStar::~AStar()
 
 	std::for_each(_closedList.begin(), _closedList.end(), deletePointer);
 
-	delete _start;
+//	delete _start;
 	delete _end;
 }
 
-AStar::AStar(int** grid, int height, int width)
+AStar::AStar(int** grid, int height, int width, int startX, int startY, int endX, int endY)
 {
 	_grid = grid;
 	_height = height;
 	_width = width;
 
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			if (grid[i][j] == 2)
-				_start = new GridCell(i, j);
-			if (grid[i][j] == 3)
-				_end = new GridCell(i, j);
-		}
-	}
+	_start = nullptr;
+	_end = nullptr;
 
-	_openList.push(_start);
+	_computation = 0;
 
-	doAStar();
+	_onOpenList = new bool*[height];
+	for (int i = 0; i < _height; i++)
+		_onOpenList[i] = new bool[width];
+
+	for (int i = 0; i < _height; i++)
+		for (int j = 0; j < _width; j++)
+			_onOpenList[i][j] = false;
+
+	doAStar(startX, startY, endX, endY);
 }
 
-void AStar::doAStar()
+void AStar::doAStar(int startX, int startY, int endX, int endY)
 {
+
+	if (startX == endX && endY == startY)
+	{
+		_solved = true;
+		return;
+	}
+
+	_start = new GridCell(startX, startY);
+	_end = new GridCell(endX, endY);
+
+	_openList.push(_start);
+	_onOpenList[startX][startY] = true;
+
 	while (!_openList.empty())
 	{
 		GridCell* cCell = _openList.top();
 		_openList.pop();
+		_computation++;
 
 		if (*cCell == *_end)
 		{
@@ -76,10 +90,15 @@ void AStar::doAStar()
 				continue;
 			}
 
-			int cost = cCell->cost() + MOVEMENT_COST + computeHeuristic(neighbour, _end);
-			neighbour->parent(cCell);
-			neighbour->cost(cost);
-			_openList.push(neighbour);
+			if (!_onOpenList[neighbour->x()][neighbour->y()])
+			{
+				neighbour->parent(cCell);
+				neighbour->heuristic(computeHeuristic(neighbour, _end));
+				neighbour->movementCost(cCell->movementCost() + MOVEMENT_COST);
+
+				_openList.push(neighbour);
+				_onOpenList[neighbour->x()][neighbour->y()] = true;
+			}
 		}
 
 		_closedList.push_back(cCell);
@@ -92,6 +111,10 @@ bool AStar::getSolution(std::vector<GridCell*> &vector) const
 {
 	if (!_solved)
 		return false;
+
+	if (_end == nullptr)
+		/* Start == End */
+		return true;
 
 	std::vector<GridCell*>::iterator it;
 
@@ -148,5 +171,5 @@ bool AStar::vectorContains(std::vector<GridCell*> &list, GridCell* g)
 
 int AStar::computeHeuristic(GridCell* currentNode, GridCell* end)
 {
-	return /* HEURISTIC_COST * */ (int)(abs(currentNode->x() - end->x()) + abs(currentNode->y() - end->y()) + 0.5);
+	return  HEURISTIC_COST * (int)(abs(currentNode->x() - end->x()) + abs(currentNode->y() - end->y()) + 0.5);
 }

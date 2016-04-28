@@ -96,6 +96,9 @@
     <ClCompile Include="IA\IAAdapter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ASCIIArtLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h">
@@ -179,8 +182,12 @@
     <ClInclude Include="IA\IAAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ASCIIArtLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="defaultMap.txt" />
+    <Text Include="ASCIIArt\won_game.txt" />
   </ItemGroup>
 </Project>

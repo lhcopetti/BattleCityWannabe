@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ASCIIArtLoader.cpp" />
     <ClCompile Include="Collision\Collidable.cpp" />
     <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="ConsoleTest.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="PrintingUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ASCIIArtLoader.h" />
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="Collision\Collidable.h" />
     <ClInclude Include="Collision\CollisionDetector.h" />
@@ -201,6 +203,7 @@
     <ClInclude Include="Paintable.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ASCIIArt\won_game.txt" />
     <Text Include="defaultMap.txt" />
   </ItemGroup>
   <ItemGroup>

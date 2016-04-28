@@ -13,6 +13,7 @@
 #include "Tiles\TileMap.h"
 #include "IA\PrettyDumbIA.h"
 #include "KeyboardManager.h"
+#include "ASCIIArtLoader.h"
 
 #include "World.h"
 #include "AStar.h"
@@ -22,30 +23,91 @@ using namespace std;
 void showEndGame(World& world)
 {
 	clrscr(BACKGROUND_BLUE | FOREGROUND_GREEN);
+
+	//char * str = ;
+
 	mostrar(0, 0, FOREGROUND_BLUE | FOREGROUND_RED, "Voce venceu o jogo. Parabens");
+
 }
 
-int main()
+enum GameStateMachine
 {
-	bool exit = false;
+	MENU_INTRO,
+	MAIN_GAME,
+	CREDITS_SCREEN,
+	SUCESS_SCREEN,
+	FAIL_SCREEN,
+	EXIT_GAME
+};
 
+
+void processMenuIntro(GameStateMachine& gameState, KeyboardManager& keyManager)
+{
+	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+
+	mostrar(0, 0, FOREGROUND_WHITE, "MENU_INTRO");
+
+	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
+		gameState = MAIN_GAME;
+	else if (keyPressed == KeyboardManager::Keys::KEY_ESC)
+		gameState = EXIT_GAME;
+
+	Sleep(30);
+}
+
+void processCredits(GameStateMachine& state, KeyboardManager& keyManager)
+{
+	clrscr(COLOR_BACKGROUND);
+	mostrar(0, 0, FOREGROUND_WHITE, "On CREDITS SCREEN");
+	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
+		state = MENU_INTRO;
+	else if (keyPressed == KeyboardManager::Keys::KEY_ESC)
+		state = EXIT_GAME;
+
+	Sleep(30);
+}
+
+void processSuccess(GameStateMachine& state, KeyboardManager& keyManager)
+{
+	//clrscr(COLOR_BACKGROUND);
+	//mostrar(0, 0, FOREGROUND_WHITE, "On SUCESS SCREEN");
+	ASCIIArtLoader asc("ASCIIArt\\won_game.txt");
+	asc.showArt();
+
+	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
+		state = CREDITS_SCREEN;
+
+	Sleep(30);
+}
+
+void processFailScreen(GameStateMachine& state, KeyboardManager& keyManager)
+{
+	clrscr(COLOR_BACKGROUND);
+	mostrar(0, 0, FOREGROUND_WHITE, "On FAIL SCREEN");
+	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
+		state = CREDITS_SCREEN;
+
+	Sleep(30);
+}
+
+void processMainGame(GameStateMachine& state, KeyboardManager& keyManager)
+{
 	Tiles::TileMap tileMap("defaultMap.txt");
 	World gameWorld(&tileMap);
 	Collision::CollisionDetector collisionDetector(&gameWorld);
 
-	KeyboardManager keyManager;
-	keyManager.startManager();
-
 	Tank* playerTank = gameWorld.getPlayerTank();
 
-	bool toggle = false;
+	UnitCommand::UnitCommand* command = NULL;
 
 	while (true)
 	{
+		KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
 
-		UnitCommand::UnitCommand* command = NULL;
-
-		switch (keyManager.getPressedKey())
+		switch (keyPressed)
 		{
 		case KeyboardManager::Keys::KEY_UP_ARROW:
 			command = new UnitCommand::GoUpCommand(playerTank);
@@ -63,19 +125,15 @@ int main()
 			command = new UnitCommand::ShootCommand(playerTank);
 			break;
 		case KeyboardManager::Keys::KEY_ESC:
-			exit = true;
-			break;
+			state = CREDITS_SCREEN;
+			return;
 		default:
 			break;
 		}
 
-		if (exit)
-			break;
-
 		if (command)
 		{
-//			if ((toggle ^= 1))
-				command->execute();
+			command->execute();
 			delete command;
 			command = nullptr;
 		}
@@ -85,11 +143,55 @@ int main()
 
 		if (gameWorld.getGameIsFinished())
 		{
-			showEndGame(gameWorld);
-			return 0;
+			if (gameWorld.getPlayerWon())
+				state = SUCESS_SCREEN;
+			else
+				state = FAIL_SCREEN;
+			break;
 		}
-		//Sleep(10);
 	}
+}
+
+
+int main()
+{
+	GameStateMachine state = MENU_INTRO;
+
+	KeyboardManager keyManager;
+	keyManager.startManager();
+
+
+	while (true)
+	{
+		GameStateMachine lastState = state;
+
+		switch (state)
+		{
+		case MENU_INTRO:
+			processMenuIntro(state, keyManager);
+			break;
+		case MAIN_GAME:
+			processMainGame(state, keyManager);
+			break;
+		case CREDITS_SCREEN:
+			processCredits(state, keyManager);
+			break;
+		case SUCESS_SCREEN:
+			processSuccess(state, keyManager);
+			break;
+		case FAIL_SCREEN:
+			processFailScreen(state, keyManager);
+			break;
+		case EXIT_GAME:
+			exit(0);
+			break;
+		}
+		if (lastState != state)
+			Sleep(500);
+
+		lastState = state;
+	}
+
 
 	keyManager.stopManager();
 

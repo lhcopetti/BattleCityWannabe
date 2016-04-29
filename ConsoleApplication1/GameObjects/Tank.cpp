@@ -37,10 +37,11 @@
 
 using namespace GameObjects;
 
-Tank::Tank(World* world, int x, int y) : GameObject(world, x, y, GameObjectType::TANK, TANK_HEIGHT, TANK_WIDTH)
+Tank::Tank(World* world, int x, int y, std::vector<std::vector<WORD>> colors) : GameObject(world, x, y, GameObjectType::TANK, TANK_HEIGHT, TANK_WIDTH)
 {
 	cDirection = UP;
 	missile = NULL;
+	_tankColor = colors;
 }
 
 void Tank::paint(World* context) const
@@ -48,11 +49,15 @@ void Tank::paint(World* context) const
 	std::vector<String> spriteDirection = getSpriteDirection();
 
 	World::paintAt(*context, spriteDirection, yPos, xPos);
+
+//	std::vector<std::vector<WORD>> colors(3, std::vector<WORD>(3, FOREGROUND_RED));
+
+	World::paintAt(*context, _tankColor, yPos, xPos);
 }
 
 void Tank::keyPressed(int ch)
 {
-	std::cout << "Some key has been pressed: " << ch << std::endl;
+//	std::cout << "Some key has been pressed: " << ch << std::endl;
 }
 
 bool Tank::shoot()
@@ -83,7 +88,7 @@ bool Tank::shoot()
 
 	missile = new Missile(world, missileX, missileY, cDirection);
 	world->addGameObject(missile, this);
-	std::cout << "Tank is shooting crazy" << std::endl;
+//	std::cout << "Tank is shooting crazy" << std::endl;
 	return true;
 }
 
@@ -183,7 +188,7 @@ void Tank::onGameObjectDeath(GameObjects::GameObject* gO)
 {
 	delete missile;
 	missile = NULL;
-	std::cout << "Shots fired. It was not pretty!!!" << std::endl;
+//	std::cout << "Shots fired. It was not pretty!!!" << std::endl;
 }
 
 void Tank::collide(Collidable* collidable)

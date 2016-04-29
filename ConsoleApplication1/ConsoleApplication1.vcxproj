@@ -37,7 +37,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -119,6 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\AStarHelloWorld;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ASCIIArtLoader.cpp" />
+    <ClCompile Include="ASCIIArt\ConsolePainter.cpp" />
     <ClCompile Include="Collision\Collidable.cpp" />
     <ClCompile Include="Collision\CollisionDetector.cpp" />
     <ClCompile Include="ConsoleTest.cpp" />
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ASCIIArtLoader.h" />
+    <ClInclude Include="ASCIIArt\ConsolePainter.h" />
     <ClInclude Include="BattleCityClone.h" />
     <ClInclude Include="Collision\Collidable.h" />
     <ClInclude Include="Collision\CollisionDetector.h" />

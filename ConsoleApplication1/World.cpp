@@ -5,6 +5,7 @@
 #include "GameObjects\Eagle.h"
 #include "IA\PrettyDumbIA.h"
 #include "IA\IAComponent.h"
+#include "ASCIIArt\ConsolePainter.h"
 
 #include <sstream>
 #include <cassert>
@@ -20,11 +21,14 @@ World::World(Tiles::TileMap* tileMap)
 
 	_startTime = std::chrono::steady_clock::now();
 
+	_painter = new ConsolePainter(getHeight(), getWidth());
+
 	clear();
 }
 
 World::~World()
 {
+	delete _painter;
 }
 
 int World::getHeight() const
@@ -56,6 +60,11 @@ void World::clear()
 		String str(getWidth() - 1, '_');
 		charWorld.push_back(str);
 	}
+
+	for (int i = 0; i < getHeight(); i++)
+	{
+		_colors.push_back(std::vector<WORD>(getWidth(), COLOR_BACKGROUND | FOREGROUND_BLUE));
+	}
 }
 
 void World::paint()
@@ -75,14 +84,17 @@ void World::paint()
 	{
 		iter->first->paint(this);
 	}
+	_painter->paint(charWorld, _colors);
 
-	for (int i = 0; i < getHeight(); i++)
-		mostrar(0, i, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)charWorld[i].c_str());
+	/*	for (int i = 0; i < getHeight(); i++)
+			mostrar(0, i, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)charWorld[i].c_str());
 
-	updateFooter();
+		updateFooter();
 
-	for (int i = 0; i < _footer.size(); i++)
-		mostrar(0, getHeight() + i,  FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)_footer[i].c_str());
+		for (int i = 0; i < _footer.size(); i++)
+			mostrar(0, getHeight() + i,  FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY, (char*)_footer[i].c_str());
+
+			*/
 }
 
 void World::updateFooter()
@@ -107,6 +119,18 @@ void World::paintAt(World& world, std::vector<String> toPaint, int x, int y)
 		world.charWorld[i].replace(y + removeWhiteSpaces, toPaint[count].size() - removeWhiteSpaces, toPaint[count].substr(removeWhiteSpaces));
 	}
 }
+
+void World::paintAt(World& world, std::vector<std::vector<WORD>> colors, int x, int y)
+{
+	for (int i = x, count = 0; i < x + colors.size(); i++, count++)
+		for (int j = y; j < y + colors.size(); j++)
+			world._colors[i][j] = colors[i - x][j - y];
+		//int removeWhiteSpaces = 0;
+		//while (toPaint[count].at(removeWhiteSpaces) == ' ')
+		//	removeWhiteSpaces++;
+		//world.charWorld[i].replace(y + removeWhiteSpaces, toPaint[count].size() - removeWhiteSpaces, toPaint[count].substr(removeWhiteSpaces));
+}
+
 
 void World::update()
 {
@@ -207,12 +231,14 @@ void World::extractGameObjects(Tiles::TileMap& tileMap)
 
 			if (mapValue == Tiles::TileMap::GAMEOBJECT_PLAYER_TANK)
 			{
-				_playerTank = new GameObjects::Tank(this, x, y);
+				std::vector<std::vector<WORD>> playerTankColor(TANK_HEIGHT, std::vector<WORD>(TANK_WIDTH, FOREGROUND_WHITE | BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_INTENSITY));
+				_playerTank = new GameObjects::Tank(this, x, y, playerTankColor);
 				addGameObject(_playerTank);
 			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_ENEMY_TANK)
 			{
-				GameObjects::Tank* enemyTank = new GameObjects::Tank(this, x, y);
+				std::vector<std::vector<WORD>> playerTankColor(TANK_HEIGHT, std::vector<WORD>(TANK_WIDTH, FOREGROUND_WHITE | BACKGROUND_RED | BACKGROUND_INTENSITY | FOREGROUND_INTENSITY));
+				GameObjects::Tank* enemyTank = new GameObjects::Tank(this, x, y, playerTankColor);
 				_ias.push_back(new IA::PrettyDumbIA(this, enemyTank));
 				addGameObject(enemyTank);
 			}

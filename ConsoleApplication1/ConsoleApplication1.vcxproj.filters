@@ -99,6 +99,9 @@
     <ClCompile Include="ASCIIArtLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ASCIIArt\ConsolePainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityClone.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ASCIIArtLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ASCIIArt\ConsolePainter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

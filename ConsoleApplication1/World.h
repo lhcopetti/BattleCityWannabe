@@ -11,12 +11,16 @@
 #include "Notify\GameObjectDied.h"
 #include "Collision\CollisionDetector.h"
 #include "IA\IAComponent.h"
+#include "ASCIIArt\ConsolePainter.h"
 
 class World
 {
 private:
 	std::vector<String> charWorld;
+	std::vector<std::vector<WORD>> _colors;
 	Tiles::TileMap* _tileMap;
+	ConsolePainter* _painter;
+
 
 	std::map<GameObjects::GameObject*, Notify::GameObjectDied*> _notifyObjects;
 	Collision::CollisionDetector* _collisionDetector;
@@ -70,5 +74,6 @@ public:
 	Tiles::Tile* getTileFromCoordinate(int x, int y);
 
 	static void paintAt(World& world, std::vector<String> toPaint, int x, int y);
+	static void paintAt(World& world, std::vector<std::vector<WORD>> colors, int x, int y);
 
 };

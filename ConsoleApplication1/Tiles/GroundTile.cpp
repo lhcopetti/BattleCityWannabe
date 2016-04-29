@@ -20,4 +20,8 @@ void GroundTile::paint(World* world) const
 
 	World::paintAt(*world, test, getXScaled(), getYScaled());
 
+	std::vector<std::vector<WORD>> t(4, std::vector<WORD>(4, BACKGROUND_GREEN | FOREGROUND_INTENSITY));
+
+	World::paintAt(*world, t, getXScaled(), getYScaled());
+
 }

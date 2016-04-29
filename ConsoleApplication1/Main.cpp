@@ -14,6 +14,7 @@
 #include "IA\PrettyDumbIA.h"
 #include "KeyboardManager.h"
 #include "ASCIIArtLoader.h"
+#include "ASCIIArt\ConsolePainter.h"
 
 #include "World.h"
 #include "AStar.h"
@@ -96,8 +97,10 @@ void processFailScreen(GameStateMachine& state, KeyboardManager& keyManager)
 void processMainGame(GameStateMachine& state, KeyboardManager& keyManager)
 {
 	Tiles::TileMap tileMap("defaultMap.txt");
+
 	World gameWorld(&tileMap);
 	Collision::CollisionDetector collisionDetector(&gameWorld);
+
 
 	Tank* playerTank = gameWorld.getPlayerTank();
 
@@ -149,6 +152,8 @@ void processMainGame(GameStateMachine& state, KeyboardManager& keyManager)
 				state = FAIL_SCREEN;
 			break;
 		}
+
+		Sleep(25);
 	}
 }
 
@@ -159,7 +164,6 @@ int main()
 
 	KeyboardManager keyManager;
 	keyManager.startManager();
-
 
 	while (true)
 	{

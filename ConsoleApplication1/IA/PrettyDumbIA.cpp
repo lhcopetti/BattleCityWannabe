@@ -33,8 +33,6 @@ void IA::PrettyDumbIA::update()
 		moveTank(*g);
 		delete g;
 	}
-
-
 }
 
 void IA::PrettyDumbIA::moveTank(GridCell& g)

@@ -3,6 +3,7 @@
 #include "InputListener.h"
 #include "GameObjects\Missile.h"
 #include "Notify\GameObjectDied.h"
+#include <Windows.h>
 
 class World;
 
@@ -18,6 +19,7 @@ namespace GameObjects
 	private:
 		Direction cDirection;
 		String cDirectionSprite[3];
+		std::vector<std::vector<WORD>> _tankColor;
 
 		Missile *missile;
 
@@ -26,7 +28,7 @@ namespace GameObjects
 
 	public:
 
-		Tank(World* world, int x, int y);
+		Tank(World* world, int x, int y, std::vector<std::vector<WORD>> tankColor);
 
 		void update();
 		void Tank::paint(World* matrix) const;

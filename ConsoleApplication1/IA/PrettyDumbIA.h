@@ -19,6 +19,7 @@ namespace IA
 		};
 
 
+		int ii = 0;
 		int _shoot;
 		StateMachine _previousState;
 		bool _previousResult;
@@ -26,6 +27,10 @@ namespace IA
 		StateMachine _currentState;
 		Direction cDirection;
 		void moveTank(GridCell& g);
+
+		GridCell* _currentTarget;
+
+		void getRandomTarget(GridCell& gridCell);
 
 	public:
 		PrettyDumbIA(World* world, GameObjects::Tank* tank);

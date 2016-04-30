@@ -165,6 +165,8 @@ int main()
 	KeyboardManager keyManager;
 	keyManager.startManager();
 
+	srand(time(nullptr));
+
 	while (true)
 	{
 		GameStateMachine lastState = state;

@@ -22,13 +22,14 @@ namespace GameObjects
 		std::vector<std::vector<WORD>> _tankColor;
 
 		Missile *missile;
+		bool _isPlayer;
 
 		std::vector<String> getSpriteDirection() const;
 		bool isTileWalkable(int x, int y) const;
 
 	public:
 
-		Tank(World* world, int x, int y, std::vector<std::vector<WORD>> tankColor);
+		Tank(World* world, int x, int y, std::vector<std::vector<WORD>> tankColor, bool _isPlayer = false);
 
 		void update();
 		void Tank::paint(World* matrix) const;
@@ -41,6 +42,8 @@ namespace GameObjects
 		bool moveUp();
 		bool moveLeft();
 		bool moveRight();
+
+		bool isPlayer() const { return _isPlayer; };
 
 		void onGameObjectDeath(GameObjects::GameObject* gO);
 

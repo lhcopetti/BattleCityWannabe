@@ -232,7 +232,7 @@ void World::extractGameObjects(Tiles::TileMap& tileMap)
 			if (mapValue == Tiles::TileMap::GAMEOBJECT_PLAYER_TANK)
 			{
 				std::vector<std::vector<WORD>> playerTankColor(TANK_HEIGHT, std::vector<WORD>(TANK_WIDTH, FOREGROUND_WHITE | BACKGROUND_BLUE | BACKGROUND_INTENSITY | FOREGROUND_INTENSITY));
-				_playerTank = new GameObjects::Tank(this, x, y, playerTankColor);
+				_playerTank = new GameObjects::Tank(this, x, y, playerTankColor, true);
 				addGameObject(_playerTank);
 			}
 			else if (mapValue == Tiles::TileMap::GAMEOBJECT_ENEMY_TANK)

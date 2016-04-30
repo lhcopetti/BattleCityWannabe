@@ -5,6 +5,10 @@
 
 class World;
 
+namespace GameObjects {
+	class Tank;
+}
+
 #define MISSILE_HEIGHT 1
 #define MISSILE_WIDTH 1
 
@@ -17,9 +21,10 @@ namespace GameObjects
 		Direction cDirection;
 		String sprite;
 		int countdown = 50;
+		Tank* _tankOwner;
 
 	public:
-		Missile(World* world, int x, int y, Direction direction);
+		Missile(World* world, int x, int y, Direction direction, Tank* owner);
 
 		virtual void onMoveDown();
 		virtual void onMoveUp();
@@ -33,6 +38,8 @@ namespace GameObjects
 		void update();
 
 		virtual void collide(Collidable* collidable);
+
+		Tank* getOwner() const { return _tankOwner; };
 
 		virtual void collideWith(GameObjects::Eagle* eagle);
 		virtual void collideWith(GameObjects::Tank* tank);

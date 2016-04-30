@@ -1,11 +1,12 @@
 #include "BattleCityClone.h"
 #include "Missile.h"
 #include "World.h"
+#include "GameObjects\Tank.h"
 
 using namespace GameObjects;
 
 
-Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(world, x, y, GameObjectType::MISSILE, MISSILE_HEIGHT, MISSILE_WIDTH)
+Missile::Missile(World* world, int x, int y, Direction direction, Tank* owner) : GameObject(world, x, y, GameObjectType::MISSILE, MISSILE_HEIGHT, MISSILE_WIDTH)
 {
 	cDirection = direction;
 
@@ -24,11 +25,15 @@ Missile::Missile(World* world, int x, int y, Direction direction) : GameObject(w
 		sprite = "v";
 		break;
 	}
+
+	_tankOwner = owner;
 }
 
 void Missile::paint(World* world) const
 {
 	World::paintAt(*world, std::vector<String> { sprite }, yPos, xPos);
+
+	World::paintAt(*world, std::vector<std::vector<WORD>>{ {FOREGROUND_RED} }, yPos, xPos);
 }
 
 void Missile::onMoveUp()
@@ -109,7 +114,9 @@ void Missile::collideWith(GameObjects::Eagle* eagle)
 
 void Missile::collideWith(GameObjects::Tank* tank)
 {
-	_alive = false;
+	if (_tankOwner)
+		if (tank->isPlayer() != _tankOwner->isPlayer())
+			_alive = false;
 }
 
 void Missile::collideWith(GameObjects::Missile* missile)

@@ -37,11 +37,12 @@
 
 using namespace GameObjects;
 
-Tank::Tank(World* world, int x, int y, std::vector<std::vector<WORD>> colors) : GameObject(world, x, y, GameObjectType::TANK, TANK_HEIGHT, TANK_WIDTH)
+Tank::Tank(World* world, int x, int y, std::vector<std::vector<WORD>> colors, bool isPlayer) : GameObject(world, x, y, GameObjectType::TANK, TANK_HEIGHT, TANK_WIDTH)
 {
 	cDirection = UP;
 	missile = NULL;
 	_tankColor = colors;
+	_isPlayer = isPlayer;
 }
 
 void Tank::paint(World* context) const
@@ -86,7 +87,7 @@ bool Tank::shoot()
 		missileX += TANK_WIDTH - 1;
 	}
 
-	missile = new Missile(world, missileX, missileY, cDirection);
+	missile = new Missile(world, missileX, missileY, cDirection, this);
 	world->addGameObject(missile, this);
 //	std::cout << "Tank is shooting crazy" << std::endl;
 	return true;
@@ -207,5 +208,7 @@ void Tank::collideWith(GameObjects::Tank* tank)
 
 void Tank::collideWith(GameObjects::Missile* missile)
 {
+	if (missile->getOwner())
+	if (isPlayer() != missile->getOwner()->isPlayer())
 		_alive = false;
 }

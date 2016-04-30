@@ -23,6 +23,9 @@ public:
 	int x() const { return _x; };
 	int y() const { return _y; };
 
+	void x(int newX) { _x = newX; };
+	void y(int newY) { _y = newY; };
+
 	void parent(GridCell* parent) { _parent = parent; };
 	GridCell* parent() { return _parent; };
 

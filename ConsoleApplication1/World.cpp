@@ -178,6 +178,12 @@ void World::update()
 		_gameIsFinished = true;
 	}
 
+	if (!_playerTank->isAlive())
+	{
+		_playerWon = false;
+		_gameIsFinished = true;
+	}
+
 	if (getRemainingTanks() == 0)
 	{
 		_playerWon = true;

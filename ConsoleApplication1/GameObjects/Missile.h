@@ -20,7 +20,7 @@ namespace GameObjects
 	private:
 		Direction cDirection;
 		String sprite;
-		int countdown = 50;
+		int countdown = 150;
 		Tank* _tankOwner;
 
 	public:

@@ -195,5 +195,7 @@
   <ItemGroup>
     <Text Include="defaultMap.txt" />
     <Text Include="ASCIIArt\won_game.txt" />
+    <Text Include="ASCIIArt\you_failed.txt" />
+    <Text Include="ASCIIArt\credits.txt" />
   </ItemGroup>
 </Project>

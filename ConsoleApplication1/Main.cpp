@@ -59,19 +59,30 @@ void processMenuIntro(GameStateMachine& gameState, KeyboardManager& keyManager)
 void processCredits(GameStateMachine& state, KeyboardManager& keyManager)
 {
 	clrscr(COLOR_BACKGROUND);
-	mostrar(0, 0, FOREGROUND_WHITE, "On CREDITS SCREEN");
-	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
-	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
-		state = MENU_INTRO;
-	else if (keyPressed == KeyboardManager::Keys::KEY_ESC)
-		state = EXIT_GAME;
+	ASCIIArtLoader asc("ASCIIArt\\credits.txt");
+	asc.showArt();
+	
+	while (true)
+	{
+		KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+		if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
+		{
+			state = MENU_INTRO;
+			break;
+		}
+		else if (keyPressed == KeyboardManager::Keys::KEY_ESC)
+		{
+			state = EXIT_GAME;
+			break;
+		}
+	}
 
 	Sleep(30);
 }
 
 void processSuccess(GameStateMachine& state, KeyboardManager& keyManager)
 {
-	//clrscr(COLOR_BACKGROUND);
+	clrscr(COLOR_BACKGROUND);
 	//mostrar(0, 0, FOREGROUND_WHITE, "On SUCESS SCREEN");
 	ASCIIArtLoader asc("ASCIIArt\\won_game.txt");
 	asc.showArt();
@@ -86,12 +97,17 @@ void processSuccess(GameStateMachine& state, KeyboardManager& keyManager)
 void processFailScreen(GameStateMachine& state, KeyboardManager& keyManager)
 {
 	clrscr(COLOR_BACKGROUND);
-	mostrar(0, 0, FOREGROUND_WHITE, "On FAIL SCREEN");
-	KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
-	if (keyPressed == KeyboardManager::Keys::KEY_SPACE)
-		state = CREDITS_SCREEN;
+	ASCIIArtLoader asc("ASCIIArt\\you_failed.txt");
+	asc.showArt();
 
-	Sleep(30);
+	while (true)
+	{
+		KeyboardManager::Keys keyPressed = keyManager.getPressedKey();
+		if (keyPressed == KeyboardManager::Keys::KEY_SPACE || keyPressed == KeyboardManager::Keys::KEY_ESC)
+			break;
+		Sleep(15);
+	}
+	state = CREDITS_SCREEN;
 }
 
 void processMainGame(GameStateMachine& state, KeyboardManager& keyManager)
@@ -178,6 +194,7 @@ int main()
 			break;
 		case MAIN_GAME:
 			processMainGame(state, keyManager);
+			Sleep(1500);
 			break;
 		case CREDITS_SCREEN:
 			processCredits(state, keyManager);

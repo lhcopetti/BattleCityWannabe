@@ -206,7 +206,9 @@
     <ClInclude Include="Paintable.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ASCIIArt\credits.txt" />
     <Text Include="ASCIIArt\won_game.txt" />
+    <Text Include="ASCIIArt\you_failed.txt" />
     <Text Include="defaultMap.txt" />
   </ItemGroup>
   <ItemGroup>

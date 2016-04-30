@@ -208,7 +208,7 @@ void Tank::collideWith(GameObjects::Tank* tank)
 
 void Tank::collideWith(GameObjects::Missile* missile)
 {
-	if (missile->getOwner())
+	//if (missile->getOwner())
 	if (isPlayer() != missile->getOwner()->isPlayer())
 		_alive = false;
 }

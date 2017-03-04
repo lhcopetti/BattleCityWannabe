@@ -104,7 +104,7 @@ void AStar::doAStar(int startX, int startY, int endX, int endY)
 		std::vector<GridCell*> neighbours;
 		getNeighbours(_grid, neighbours, cCell, _height, _width);
 
-		for each (GridCell* neighbour in neighbours)
+		for (GridCell* neighbour : neighbours)
 		{
 			if (vectorContains(_closedList, neighbour))
 			{

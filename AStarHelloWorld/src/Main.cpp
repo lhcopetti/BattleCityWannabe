@@ -19,7 +19,7 @@ void printCells(std::vector<GridCell*> cells)
 
 void printMatrix(int **matrix, int width, int height);
 
-int mainNot()
+int main()
 {
 	int height = 6;
 	int width = 6;

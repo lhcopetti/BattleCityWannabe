@@ -81,9 +81,6 @@ int main()
 		delete matrix[i];
 	delete[] matrix;
 
-	string myString;
-	cin >> myString;
-
 	return 0;
 }
 #endif

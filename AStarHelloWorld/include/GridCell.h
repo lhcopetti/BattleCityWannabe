@@ -37,9 +37,6 @@ public:
 	int movementCost() { return _movementCost; };
 	int heuristic() { return _heuristic; };
 
-	//void movementCost(int mCost) { _movementCost = mCost; };
-	//void heuristic(int h) { _heuristic = h; };
-
 	bool isEqual(GridCell* g) const;
 
 	bool operator==(const GridCell& other) const;

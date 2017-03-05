@@ -3,6 +3,7 @@
 	<name>BattleCityWannaBe</name>
 	<comment></comment>
 	<projects>
+		<project>NaiveAStarImplementation</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,7 +1,9 @@
 
 #include "GridCell.h"
 
-GridCell::GridCell(const GridCell& grid)
+GridCell::GridCell(const GridCell& grid) :
+	_heuristic(0),
+	_movementCost(0)
 {
 	_x = grid.x();
 	_y = grid.y();

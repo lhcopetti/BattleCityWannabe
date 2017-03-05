@@ -12,7 +12,7 @@ using namespace std;
 
 void printCells(std::vector<GridCell*> cells)
 {
-	for (int i = 0; i < cells.size(); i++)
+	for (unsigned int i = 0; i < cells.size(); i++)
 		cout << "Cell#" << i << " : [" << cells[i]->x() << "][" << cells[i]->y() << "] | " << endl;
 	cout << endl;
 }

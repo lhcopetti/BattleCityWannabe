@@ -19,6 +19,8 @@ void printCells(std::vector<GridCell*> cells)
 
 void printMatrix(int **matrix, int width, int height);
 
+#ifdef MAIN_BUILD
+
 int main()
 {
 	int height = 6;
@@ -39,7 +41,7 @@ int main()
 	//		{ 2, 0, 0, 0 },
 	//		{ 0, 1, 0, 0 },
 	//		{ 1, 3, 0, 1 },
-	//		{ 1, 1, 0, 0 } 
+	//		{ 1, 1, 0, 0 }
 	//};
 
 	//GridCell* t = new GridCell(3, 3);
@@ -84,6 +86,7 @@ int main()
 
 	return 0;
 }
+#endif
 
 void printMatrix(int **matrix, int width, int height)
 {
